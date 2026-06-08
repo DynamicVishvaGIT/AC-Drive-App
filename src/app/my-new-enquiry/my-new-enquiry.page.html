@@ -1,0 +1,416 @@
+<!-- new-enquiry.page.html -->
+
+<ion-header class="custom-header">
+  <ion-toolbar>
+    <div class="header-container">
+      <div class="header-left" (click)="goBack()">
+        <ion-icon name="chevron-back-outline"></ion-icon>
+        <h1>New Enquiry</h1>
+      </div>
+    </div>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="enquiry-content">
+  <div class="page-wrapper">
+    <!-- ========================= -->
+    <!-- PREVIOUS CALCULATIONS -->
+    <!-- ========================= -->
+    <div class="main-card">
+      <div class="card-header-blue">
+        Previous Calculations
+      </div>
+      <div class="card-body">
+        <p class="sub-text">
+          Select from your recent drive calculations to add to this enquiry
+        </p>
+        <!-- CALCULATION CARD -->
+        <div class="calc-card" *ngFor="let item of calculations" [class.selected-card]="item.selected" (click)="toggleSelection(item)">
+          <div class="calc-top">
+            <div class="checkbox" [class.checkbox-selected]="item.selected">
+              <ion-icon *ngIf="item.selected" name="checkmark-outline"></ion-icon>
+            </div>
+            <div class="calc-details">
+              <h3>{{item.model}}</h3>
+              <div class="calc-grid">
+                <div>
+                  <p>Power: {{item.power}} kW</p>
+                  <p>Type: {{item.type}}</p>
+                </div>
+                <div>
+                  <p>Voltage: {{item.voltage}}V</p>
+                  <p class="date-row">
+                    <ion-icon name="time-outline"></ion-icon>
+                    {{item.date}}
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- ADD SELECTED BUTTON -->
+        <ion-button expand="block" class="add-selected-btn" *ngIf="selectedCount > 0" (click)="addSelectedItems()">
+          <ion-icon name="add-outline" slot="start"></ion-icon>
+          Add {{selectedCount}} Selected Item{{selectedCount > 1 ? 's' : ''}} to Enquiry
+        </ion-button>
+      </div>
+    </div>
+
+    <!-- ========================= -->
+    <!-- PRODUCTS -->
+    <!-- ========================= -->
+
+    <div class="product-enquiry-card">
+      <div class="card-header-row">
+        <div class="product-card-header-blue">
+          Products for Enquiry ({{products.length}})
+        </div>
+        <div class="manual-btn" (click)="addManualProduct()">
+          <ion-icon name="add-outline"></ion-icon>
+          <span>Add Manual</span>
+        </div>
+      </div>
+      <!-- EMPTY STATE -->
+      <div class="empty-state" *ngIf="products.length === 0" >
+        <ion-icon name="document-outline"></ion-icon>
+        <p>
+          No products added yet. Select from previous
+          calculations or add manually.
+        </p>
+      </div>
+      <!-- PRODUCT LIST -->
+      <div class="product-card" *ngFor="let product of products; let i = index">
+        <!-- PRODUCT HEADER -->
+        <div class="product-header">
+          <h2>Product {{i + 1}}</h2>
+          <ion-icon name="trash-outline" class="delete-icon" (click)="deleteProduct(i)"></ion-icon>
+        </div>
+        <!-- DRIVE MODEL -->
+        <div class="field-wrapper">
+          <label class="input-label">Drive Model *</label>
+          <div class="custom-input" [class.input-focused]="product.modelFocused">
+            <input type="text" placeholder="e.g., INVT-CHF100A-7R5G/11P-4" [(ngModel)]="product.model" (focus)="product.modelFocused = true" (blur)="product.modelFocused = false"/>
+          </div>
+        </div>
+        <!-- NOTE -->
+        <div class="last-search">
+          <ion-icon name="time-outline"></ion-icon>
+          <span>Last searched: {{product.date}}</span>
+        </div>
+        <!-- ROW -->
+        <div class="input-row">
+          <!-- QUANTITY -->
+          <div class="field-wrapper half-width">
+            <label class="input-label">Quantity *</label>
+            <div class="custom-input" [class.input-focused]="product.qtyFocused">
+              <input type="number" [(ngModel)]="product.quantity" (focus)="product.qtyFocused = true" (blur)="product.qtyFocused = false"/>
+            </div>
+          </div>
+
+          <!-- POWER -->
+
+          <div class="field-wrapper half-width">
+
+            <label class="input-label">
+              Power (kW)
+            </label>
+
+            <div
+              class="custom-input"
+              [class.input-focused]="product.powerFocused"
+            >
+
+              <input
+                type="text"
+                placeholder="e.g., 7.5"
+                [(ngModel)]="product.power"
+                (focus)="product.powerFocused = true"
+                (blur)="product.powerFocused = false"
+              />
+
+            </div>
+
+          </div>
+
+        </div>
+
+        <!-- ROW -->
+
+        <div class="input-row">
+
+          <!-- VOLTAGE -->
+
+          <div class="field-wrapper half-width">
+
+            <label class="input-label">
+              Voltage (V)
+            </label>
+
+            <div
+              class="custom-input"
+              [class.input-focused]="product.voltageFocused"
+            >
+
+              <input
+                type="text"
+                placeholder="e.g., 415"
+                [(ngModel)]="product.voltage"
+                (focus)="product.voltageFocused = true"
+                (blur)="product.voltageFocused = false"
+              />
+
+            </div>
+
+          </div>
+
+          <!-- APPLICATION -->
+
+          <div class="field-wrapper half-width">
+
+            <label class="input-label">
+              Application
+            </label>
+
+            <div class="custom-input">
+
+              <select [(ngModel)]="product.application">
+
+                <option value="">
+                  Select
+                </option>
+
+                <option value="Pump">
+                  Pump
+                </option>
+
+                <option value="Fan">
+                  Fan
+                </option>
+
+                <option value="Conveyor">
+                  Conveyor
+                </option>
+
+                <option value="Compressor">
+                  Compressor
+                </option>
+
+              </select>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- ========================= -->
+    <!-- ENQUIRY DETAILS -->
+    <!-- ========================= -->
+
+    <div class="white-card">
+
+      <div class="title-row">
+
+        <ion-icon name="document-text-outline"></ion-icon>
+
+        <h2>Enquiry Details</h2>
+
+      </div>
+
+      <!-- SUBJECT -->
+
+      <div class="field-wrapper">
+
+        <label class="input-label">
+          Subject *
+        </label>
+
+        <div
+          class="contact-custom-input"
+          [class.input-focused]="subjectFocused"
+        >
+
+          <input
+            type="text"
+            placeholder="Brief description of your enquiry"
+            [(ngModel)]="subject"
+            (focus)="subjectFocused = true"
+            (blur)="subjectFocused = false"
+          />
+
+        </div>
+
+      </div>
+
+      <!-- REQUIREMENT -->
+
+      <div class="field-wrapper">
+
+        <label class="input-label">
+          Additional Requirements
+        </label>
+
+        <div
+          class="custom-textarea"
+          [class.textarea-focused]="requirementFocused"
+        >
+
+          <textarea
+            placeholder="Describe any specific requirements, features, or customizations needed..."
+            [(ngModel)]="requirements"
+            (focus)="requirementFocused = true"
+            (blur)="requirementFocused = false"
+          ></textarea>
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- ========================= -->
+    <!-- CONTACT INFO -->
+    <!-- ========================= -->
+
+    <div class="white-card">
+
+      <h2 class="section-title">
+        Contact Information
+      </h2>
+
+      <!-- NAME -->
+
+      <div class="field-wrapper">
+
+        <label class="input-label">
+          Full Name *
+        </label>
+
+        <div
+          class="contact-custom-input"
+          [class.input-focused]="nameFocused"
+        >
+
+          <input
+            type="text"
+            placeholder="John Smith"
+            [(ngModel)]="fullName"
+            (focus)="nameFocused = true"
+            (blur)="nameFocused = false"
+          />
+
+        </div>
+
+      </div>
+
+      <!-- COMPANY -->
+
+      <div class="field-wrapper">
+
+        <label class="input-label">
+          Company Name *
+        </label>
+
+        <div
+          class="contact-custom-input"
+          [class.input-focused]="companyFocused"
+        >
+
+          <input
+            type="text"
+            placeholder="Your Company Ltd."
+            [(ngModel)]="companyName"
+            (focus)="companyFocused = true"
+            (blur)="companyFocused = false"
+          />
+
+        </div>
+
+      </div>
+
+      <!-- EMAIL -->
+
+      <div class="field-wrapper">
+
+        <label class="input-label">
+          Email Address *
+        </label>
+
+        <div
+          class="contact-custom-input"
+          [class.input-focused]="emailFocused"
+        >
+
+          <input
+            type="email"
+            placeholder="you@company.com"
+            [(ngModel)]="email"
+            (focus)="emailFocused = true"
+            (blur)="emailFocused = false"
+          />
+
+        </div>
+
+      </div>
+
+      <!-- PHONE -->
+
+      <div class="field-wrapper">
+
+        <label class="input-label">
+          Phone Number *
+        </label>
+
+        <div
+          class="contact-custom-input"
+          [class.input-focused]="phoneFocused"
+        >
+
+          <input
+            type="text"
+            placeholder="+91 98765 43210"
+            [(ngModel)]="phone"
+            (focus)="phoneFocused = true"
+            (blur)="phoneFocused = false"
+          />
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- ========================= -->
+    <!-- ATTACHMENTS -->
+    <!-- ========================= -->
+
+    <div class="white-card">
+      <h2 class="section-title">
+        Attachments (Optional)
+      </h2>
+      <div class="upload-box" (click)="openUploadConfirm()">
+        <input #fileInput type="file" hidden multiple (change)="onFileSelected($event)"/>
+        <ion-icon name="cloud-upload-outline"></ion-icon>
+        <h3>Upload Files</h3>
+        <p>
+          Click to upload drawings, specifications,
+          or technical documents
+        </p>
+      </div>
+      <!-- FILES -->
+      <div class="file-item"*ngFor="let file of uploadedFiles">
+        <ion-icon name="document-outline"></ion-icon>
+        <span>{{file.name}}</span>
+      </div>
+    </div>
+    <!-- SUBMIT -->
+    <ion-button expand="block" class="submit-btn" (click)="submitEnquiry()">
+      <ion-icon name="document-text-outline" slot="start"></ion-icon>
+      Submit Enquiry ({{products.length}} Products)
+    </ion-button>
+  </div>
+</ion-content>

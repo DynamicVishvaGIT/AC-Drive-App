@@ -1,0 +1,103 @@
+<!-- my-leads.page.html -->
+
+<ion-header class="custom-header">
+  <ion-toolbar>
+    <div class="header-container">
+      <h1>My Leads</h1>
+    </div>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="my-leads-content">
+  <div class="page-wrapper">
+    <!-- ========================= -->
+    <!-- STATS -->
+    <!-- ========================= -->
+    <div class="stats-grid">
+      <!-- Pending -->
+      <div class="stats-card">
+        <div class="stats-top">
+          <ion-icon name="time-outline" class="pending-icon"></ion-icon>
+          <span>Pending</span>
+        </div>
+        <h2>{{ count_data.pending }}</h2>
+      </div>
+      <!-- Won -->
+      <div class="stats-card">
+        <div class="stats-top">
+          <ion-icon name="trending-up-outline" class="won-icon"></ion-icon>
+          <span>Won</span>
+        </div>
+        <h2 class="won-value">{{ count_data.won }}</h2>
+      </div>
+      <!-- Lost -->
+      <div class="stats-card">
+        <div class="stats-top">
+          <ion-icon name="trending-down-outline" class="lost-icon"></ion-icon>
+          <span>Lost</span>
+        </div>
+        <h2 class="lost-value">{{ count_data.lost }}</h2>
+      </div>
+      <!-- Amount -->
+      <div class="stats-card">
+        <div class="stats-top">
+          <ion-icon name="logo-usd" class="amount-icon"></ion-icon>
+          <span>Won Amount</span>
+        </div>
+        <h2 class="amount-value">₹{{ count_data.won_amount }}</h2>
+      </div>
+    </div>
+    <!-- ========================= -->
+    <!-- SEARCH -->
+    <!-- ========================= -->
+    <div class="search-box">
+      <ion-icon name="search-outline"></ion-icon>
+      <input type="text" placeholder="Search leads by name or phone..." [(ngModel)]="searchText" (input)="filterLeads()"/>
+    </div>
+    <!-- ========================= -->
+    <!-- TABS -->
+    <!-- ========================= -->
+    <div class="tab-container">
+      <button class="tab-btn" [class.active-tab]="selectedTab === 'All'" (click)="load_leads('All')">All</button>
+      <button class="tab-btn" [class.active-tab]="selectedTab === 'Pending'" (click)="load_leads('Pending')">Pending</button>
+      <button class="tab-btn" [class.active-tab]="selectedTab === 'Won'" (click)="load_leads('Won')">Won</button>
+      <button class="tab-btn" [class.active-tab]="selectedTab === 'Lost'" (click)="load_leads('Lost')">Lost</button>
+    </div>
+    <!-- ========================= -->
+    <!-- NO DATA -->
+    <!-- ========================= -->
+    <div class="empty-card" *ngIf="filteredLeads.length === 0">
+      <p>No leads found</p>
+      <button class="first-lead-btn" (click)="goToAddLead()">
+        <ion-icon name="add-outline"></ion-icon>
+        <span>Add Your First Lead</span>
+      </button>
+    </div>
+    <!-- ========================= -->
+    <!-- LEAD LIST -->
+    <!-- ========================= -->
+    <div class="lead-card" *ngFor="let lead of filteredLeads">
+      <div class="lead-top">
+        <div>
+          <h2>{{ lead.lead_name }}</h2>
+          <h3>{{ lead.phone_number }}</h3>
+        </div>
+        <div class="status-badge" [ngClass]="{
+            'pending-badge': lead.status === 'Pending',
+            'won-badge': lead.status === 'Won',
+            'lost-badge': lead.status === 'Lost'
+          }">{{ lead.status.toUpperCase() }}
+        </div>
+      </div>
+      <h4><strong>Product:</strong>{{ lead.product_name }}</h4>
+      <p>Created: {{ lead.created_date }}</p>
+    </div>
+    <!-- ========================= -->
+    <!-- BUTTON -->
+    <!-- ========================= -->
+    <button class="add-btn" (click)="goToAddLead()">
+      <ion-icon name="add-outline"></ion-icon>
+      <span>Add New Lead</span>
+    </button>
+  </div>
+</ion-content>

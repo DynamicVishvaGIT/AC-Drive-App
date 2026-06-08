@@ -1,0 +1,91 @@
+<!-- training-registration.page.html -->
+
+<ion-header class="custom-header">
+  <ion-toolbar>
+    <div class="header-container">
+      <!-- LEFT -->
+      <div class="left-section">
+        <div class="header-icon-box" (click)="goBack()">
+          <ion-icon name="chevron-back-outline"></ion-icon>
+        </div>
+        <h1>Training Registration</h1>
+      </div>
+      <!-- RIGHT -->
+      <!-- <div class="header-icon-box right-icon">
+        <ion-icon name="school-outline"></ion-icon>
+      </div> -->
+    </div>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" class="registration-content">
+  <div class="main-wrapper">
+    <!-- TRAINING CARD -->
+    <div class="training-card">
+      <div class="training-row">
+        <!-- ICON -->
+        <div class="training-icon-box">
+          <ion-icon name="school-outline"></ion-icon>
+        </div>
+        <!-- TEXT -->
+        <div class="training-text">
+          <h2>Professional Training Program</h2>
+          <p>
+            Register for hands-on training conducted
+            by certified engineers. Get
+            industry-recognized certification
+            upon completion.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- USER INFORMATION -->
+    <div class="info-card">
+      <!-- TOP -->
+      <div class="card-header">
+        <div class="heading-row">
+          <ion-icon name="person-outline"></ion-icon>
+          <h2>Your Information</h2>
+        </div>
+        <div class="auto-badge">Auto-filled</div>
+      </div>
+      <!-- NAME -->
+      <div class="input-group">
+        <label><ion-icon name="person-outline"></ion-icon>Name</label>
+        <input type="text" [(ngModel)]="training_data.full_name"  class="custom-input"/>
+      </div>
+      <!-- EMAIL -->
+      <div class="input-group">
+        <label><ion-icon name="mail-outline"></ion-icon>Email</label>
+        <input type="email" [(ngModel)]="training_data.email_id" class="custom-input" />
+      </div>
+      <!-- PHONE -->
+      <div class="input-group">
+        <label><ion-icon name="call-outline" ></ion-icon>Phone</label>
+        <input type="tel" [(ngModel)]="training_data.mobile_no"  class="custom-input"/>
+      </div>
+    </div>
+
+    <!-- REQUIREMENTS -->
+    <div class="requirements-card">
+      <h2>Additional Requirements</h2>
+      <p class="sub-heading">
+        Optional - Any specific questions or
+        requirements
+      </p>
+      <ion-textarea rows="5" class="custom-textarea" placeholder="e.g., Need certificate for specific compliance, dietary restrictions, accessibility requirements..." [(ngModel)]="training_data.description" ></ion-textarea>
+    </div>
+    <!-- BUTTON -->
+    <ion-button expand="block" class="submit-btn" (click)="submitRegistration()">
+      <ion-icon name="school-outline" slot="start"></ion-icon>
+      Submit Registration
+    </ion-button>
+    <!-- FOOTER CARD -->
+    <div class="footer-card">
+      Our training team will contact you within
+      24-48 hours to confirm your schedule
+      and provide joining details.
+    </div>
+  </div>
+</ion-content>

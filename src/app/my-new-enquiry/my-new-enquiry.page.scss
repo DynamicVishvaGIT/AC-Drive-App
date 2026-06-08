@@ -1,0 +1,478 @@
+/* new-enquiry.page.scss */
+
+.enquiry-content {
+    --background: #f9fafc;
+  }
+  
+  /* HEADER */
+  
+  .custom-header ion-toolbar {
+    --background: #0156a3;
+    --color: #ffffff;
+    --min-height: 60px;
+    // padding-top: 3px;
+    padding: 10px 14px 14px 0px;
+  }
+  
+  .header-container {
+    padding: 0 18px;
+  }
+  
+  .header-left {
+    display: flex;
+    align-items: center;
+  }
+  
+  .header-left ion-icon {
+    font-size: 24px;
+    margin-right: 14px;
+  }
+  
+  .header-left h1 {
+    margin: 0;
+    font-size: 20px;
+    font-weight: 700;
+  }
+  
+  /* WRAPPER */
+  
+  .page-wrapper {
+    padding: 18px 16px 40px;
+  }
+  
+  /* MAIN CARD */
+  
+  .main-card {
+    background: #ffffff;
+    border-radius: 13px;
+    overflow: hidden;
+    border: 1px solid #dfe7ef;
+    margin-bottom: 24px;
+  }
+  
+  .card-header-blue {
+    background: #0156b3;
+    color: #ffffff;
+    padding: 16px 18px;
+    font-size: 20px;
+    font-weight: 700;
+  }
+
+  .product-enquiry-card {
+    background: #ffffff;
+    border-radius: 13px;
+    overflow: hidden;
+    border: 1px solid #dfe7ef;
+    margin-bottom: 24px;
+  }
+  
+  .product-card-header-blue {
+    background: #0156b3;
+    color: #ffffff;
+    padding: 16px 11px;
+    font-size: 15px;
+    font-weight: 600;
+  }
+  
+  .card-body {
+    padding: 12px;
+  }
+  
+  .sub-text {
+    margin-top: 0;
+    color: #64748b;
+    font-size: 14px;
+    line-height: 20px;
+  }
+  
+  /* CALC CARD */
+  
+  .calc-card {
+    border: 1px solid #dfe7ef;
+    border-radius: 8px;
+    padding: 13px;
+    margin-bottom: 10px;
+    transition: 0.3s ease;
+  }
+  
+  .selected-card {
+    background: #e5f2ff;
+  
+    border: 2px solid #0156a3;
+  }
+  
+  .calc-top {
+    display: flex;
+  }
+  
+  .checkbox {
+    width: 20px;
+    height: 20px;
+    min-width: 20px;
+    border: 2px solid #dfe7ef;
+    border-radius: 4px;
+    margin-right: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #ffffff;
+  }
+  
+  .checkbox-selected {
+    background: #0156a3;
+  
+    border-color: #0156a3;
+  }
+  
+  .checkbox-selected ion-icon {
+    color: #ffffff;
+  
+    font-size: 20px;
+  }
+  
+  .calc-details {
+    width: 100%;
+  }
+  
+  .calc-details h3 {
+    margin-top: 0;
+    margin-bottom: 5px;
+    color: #0156a3;
+    font-size: 15px;
+    font-weight: 600;
+  }
+  
+  .calc-grid {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .calc-grid p {
+    margin: 0 0 5px;
+    color: #64748b;
+    font-size: 14px;
+    font-weight: 500;
+  }
+  
+  .date-row {
+    display: flex;
+    align-items: center;
+  }
+  
+  .date-row ion-icon {
+    margin-right: 6px;
+  }
+  
+  /* BUTTON */
+  
+  .add-selected-btn {
+    --background: #069668;
+    --border-radius: 6px;
+    height: 42px;
+    font-size: 15px;
+    font-weight: 500;
+    text-transform: none;
+    margin-top: 17px;
+  }
+  
+  /* HEADER ROW */
+  
+  .card-header-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: #0156b3;
+    padding: 14px 14px 14px 0;
+  }
+  
+  .manual-btn {
+    background: #167bd6;
+    height: 36px;
+    border-radius: 8px;
+    padding: 0 9px 0 5px;
+    display: flex;
+    align-items: center;
+    color: #ffffff;
+    font-size: 13px;
+    font-weight: 500;
+  }
+  
+  .manual-btn ion-icon {
+    font-size: 20px;
+    margin-right: 8px;
+  }
+  
+  /* EMPTY */
+  
+  .empty-state {
+    padding: 40px 24px;
+    text-align: center;
+  }
+  
+  .empty-state ion-icon {
+    font-size: 45px;
+    color: #64748b;
+  }
+  
+  .empty-state p {
+    color: #64748b;
+    font-size: 16px;
+    line-height: 23px;
+  }
+  
+  /* PRODUCT CARD */
+  
+  .product-card {
+    margin: 18px;
+    border: 1px solid #dfe7ef;
+    border-radius: 8px;
+    padding: 15px;
+    background: #f9fafc;
+  }
+  
+  .product-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  
+    margin-bottom: 20px;
+  }
+  
+  .product-header h2 {
+    margin: 0;
+    color: #1b1d2e;
+    font-size: 18px;
+    font-weight: 600;
+  }
+  
+  .delete-icon {
+    color: #dc2626;
+    font-size: 20px;
+  }
+  
+  /* FIELD */
+  
+  .field-wrapper {
+    margin-bottom: 10px;
+  }
+  
+  .input-label {
+    font-size: 15px;
+    font-weight: 500;
+    color: #1b1d2e;
+    margin-bottom: 8px;
+    display: block;
+  }
+  
+  .custom-input {
+    width: 100%;
+    height: 45px;
+    background: #ffffff;
+    border: 1px solid #e2e8ef;
+    border-radius: 9px;
+    display: flex;
+    align-items: center;
+    padding-left: 11px;
+    padding-right: 11px;
+    transition: 0.3s ease;
+  }
+
+  .custom-input input,
+  .custom-input select {
+    width: 100%;
+  
+    border: none;
+    outline: none;
+  
+    background: transparent;
+  
+    font-size: 16px;
+  
+    color: #101828;
+  
+    padding-left: 8px;
+    padding-right: 8px;
+  }
+  
+  .custom-input input::placeholder,
+  textarea::placeholder {
+    color: #64748b;
+  }
+
+  .contact-custom-input{
+    width: 100%;
+    height: 45px;
+    background: #f9fafc;
+    border: 1px solid #e2e8ef;
+    border-radius: 9px;
+    display: flex;
+    align-items: center;
+    padding-left: 11px;
+    padding-right: 11px;
+    transition: 0.3s ease;
+  }
+  
+  .contact-custom-input input,
+  .contact-custom-input select {
+    width: 100%;
+    border: none;
+    outline: none;
+    background: transparent;
+    font-size: 16px;
+    color: #101828;
+    padding-left: 8px;
+    padding-right: 8px;
+  }
+  
+  .contact-custom-input input::placeholder,
+  textarea::placeholder {
+    color: #64748b;
+  }
+  
+  .input-focused {
+    border: 2px solid
+      color-mix(in oklab, var(--ion-color-primary) 50%, transparent);
+  
+    box-shadow: 0 0 0 4px rgba(22, 95, 168, 0.12);
+  }
+  
+  /* TEXTAREA */
+  
+  .custom-textarea {
+    width: 100%;
+    min-height: 121px;
+    background: #f9fafc;
+    border: 1px solid #d9e1ea;
+    border-radius: 8px;
+    padding: 14px;
+    transition: 0.3s ease;
+  }
+  
+  .custom-textarea textarea {
+    width: 100%;
+    height: 98px;
+    border: none;
+    outline: none;
+    resize: none;
+    background: transparent;
+    font-size: 14px;
+    color: #101828;
+    line-height: 18px;
+  }
+  
+  .textarea-focused {
+    border: 2px solid
+      color-mix(in oklab, var(--ion-color-primary) 50%, transparent);
+    box-shadow: 0 0 0 4px rgba(22, 95, 168, 0.12);
+  }
+  
+  /* INPUT ROW */
+  
+  .input-row {
+    display: flex;
+    gap: 16px;
+  }
+  
+  .half-width {
+    width: 50%;
+  }
+  
+  /* LAST SEARCH */
+  
+  .last-search {
+    display: flex;
+    align-items: center;
+    color: #64748b;
+    font-size: 14px;
+    margin-bottom: 9px;
+  }
+  
+  .last-search ion-icon {
+    margin-right: 6px;
+  }
+  
+  /* WHITE CARD */
+  
+  .white-card {
+    background: #ffffff;
+    border-radius: 8px;
+    border: 1px solid #dfe7ef;
+    padding: 20px;
+    margin-bottom: 24px;
+  }
+  
+  /* TITLE */
+  
+  .title-row {
+    display: flex;
+    align-items: center;
+    margin-bottom: 24px;
+  }
+  
+  .title-row ion-icon {
+    font-size: 24px;
+    color: #0156a3;
+    margin-right: 12px;
+  }
+  
+  .title-row h2,
+  .section-title {
+    margin: 0;
+    color: #1b1d2e;
+    font-size: 18px;
+    font-weight: 500;
+    margin-bottom: 16px;
+  }
+  
+  /* UPLOAD */
+  
+  .upload-box {
+    border: 2px dashed #d9e1ea;
+    border-radius: 8px;
+    padding: 20px 20px;
+    text-align: center;
+  }
+  
+  .upload-box ion-icon {
+    font-size: 40px;
+    color: #64748b;
+  }
+  
+  .upload-box h3 {
+    margin-top: 2px;
+    margin-bottom: 2px;
+    color: #272a3a;
+    font-size: 18px;
+    font-weight: 500;
+  }
+  
+  .upload-box p {
+    margin: 0;
+    color: #64748b;
+    font-size: 14px;
+    line-height: 16px;
+  }
+  
+  .file-item {
+    display: flex;
+    align-items: center;
+    margin-top: 14px;
+    color: #0156a3;
+    font-size: 16px;
+    font-weight: 600;
+  }
+  
+  .file-item ion-icon {
+    margin-right: 8px;
+  }
+  
+  /* SUBMIT */
+  
+  .submit-btn {
+    --background: #0156a3;
+    --border-radius: 8px;
+    height: 45px;
+    font-size: 16px;
+    font-weight: 500;
+    text-transform: none;
+  }

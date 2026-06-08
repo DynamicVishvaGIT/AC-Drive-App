@@ -1,0 +1,183 @@
+<!-- service-request.page.html -->
+
+<ion-header class="custom-header">
+  <ion-toolbar>
+    <div class="header-container">
+      <h1>Service Request</h1>
+    </div>
+  </ion-toolbar>
+</ion-header>
+<ion-content class="service-content">
+  <div class="page-wrapper">
+    <!-- ======================= -->
+    <!-- SUPPORT CARD -->
+    <!-- ======================= -->
+    <div class="support-card">
+      <div class="support-left">
+        <ion-icon name="warning-outline"></ion-icon>
+      </div>
+      <div class="support-right">
+        <h2>24/7 Technical Support</h2>
+        <p>Our engineering team will respond within 2-4 business hours</p>
+      </div>
+    </div>
+    <!-- ======================= -->
+    <!-- REQUEST DETAILS -->
+    <!-- ======================= -->
+    <div class="form-card">
+      <div class="card-title-row">
+        <ion-icon name="build-outline"></ion-icon>
+        <h2>Request Details</h2>
+      </div>
+      <!-- REQUEST TYPE -->
+      <div class="field-block">
+        <label class="input-label required">Request Type</label>
+        <div class="custom-select" [class.input-focused]="requestTypeFocused">
+          <select [(ngModel)]="serviceJson.request_type" (focus)="requestTypeFocused = true" (blur)="requestTypeFocused = false">
+            <option value="{{data}}" *ngFor="let data of request_types">{{data}}</option>
+          </select>
+          <ion-icon name="chevron-down-outline"></ion-icon>
+        </div>
+      </div>
+      <!-- PRIORITY -->
+      <div class="field-block">
+        <label class="input-label required">Priority Level</label>
+        <div class="custom-select" [class.input-focused]="priorityFocused">
+          <select [(ngModel)]="serviceJson.priority_level" (focus)="priorityFocused = true" (blur)="priorityFocused = false" >
+            <option value="{{data}}" *ngFor="let data of priority_levels">{{data}}</option>
+          </select>
+          <ion-icon name="chevron-down-outline"></ion-icon>
+        </div>
+      </div>
+      <!-- SUBJECT -->
+      <div class="field-block">
+        <label class="input-label required">Subject</label>
+        <div class="custom-input" [class.input-focused]="subjectFocused">
+          <input type="text" placeholder="Brief summary of the issue" [(ngModel)]="serviceJson.subject" (focus)="subjectFocused = true" (blur)="subjectFocused = false"/>
+        </div>
+      </div>
+    </div>
+
+    <!-- ======================= -->
+    <!-- EQUIPMENT INFO -->
+    <!-- ======================= -->
+    <div class="form-card">
+      <div class="simple-title">Equipment Information</div>
+      <!-- ROW -->
+      <div class="double-row">
+        <!-- DRIVE MODEL -->
+        <div class="field-block half-field">
+          <label class="input-label required">Drive Model</label>
+          <div class="custom-input" [class.input-focused]="driveModelFocused">
+            <input type="text" placeholder="e.g., LK-VFD-5500" [(ngModel)]="serviceJson.drive_model" (focus)="driveModelFocused = true" (blur)="driveModelFocused = false"/>
+          </div>
+        </div>
+        <!-- SERIAL -->
+        <div class="field-block half-field">
+          <label class="input-label">Serial Number</label>
+          <div class="custom-input" [class.input-focused]="serialFocused">
+            <input type="text" placeholder="SN-XXXXXXXX" [(ngModel)]="serviceJson.serial_number" (focus)="serialFocused = true" (blur)="serialFocused = false"/>
+          </div>
+        </div>
+      </div>
+      <!-- ISSUE CATEGORY -->
+      <div class="field-block">
+        <label class="input-label required">Issue Category</label>
+        <div class="custom-select" [class.input-focused]="issueFocused" >
+          <select [(ngModel)]="serviceJson.issue_category" (focus)="issueFocused = true" (blur)="issueFocused = false">
+            <option value="{{data}}" *ngFor="let data of issue_categories">{{data}}</option>
+          </select>
+          <ion-icon name="chevron-down-outline"></ion-icon>
+        </div>
+      </div>
+      <!-- DESCRIPTION -->
+      <div class="field-block">
+        <label class="input-label required">Detailed Description</label>
+        <div class="custom-textarea" [class.input-focused]="descriptionFocused">
+          <textarea rows="7" placeholder="Please provide detailed information about the issue, including: - What happened? - When did it occur? - Any error codes or messages? - Steps already taken to resolve it?" [(ngModel)]="serviceJson.detailed_description" (focus)="descriptionFocused = true" (blur)="descriptionFocused = false"></textarea>
+        </div>
+      </div>
+    </div>
+    <!-- ======================= -->
+    <!-- CONTACT -->
+    <!-- ======================= -->
+    <div class="form-card">
+      <div class="simple-title">Contact Information</div>
+      <!-- NAME -->
+      <div class="field-block">
+        <label class="input-label required">Full Name</label>
+        <div class="custom-input" [class.input-focused]="nameFocused">
+          <input type="text" placeholder="full name" [(ngModel)]="serviceJson.full_name" (focus)="nameFocused = true" (blur)="nameFocused = false"/>
+        </div>
+      </div>
+      <!-- EMAIL -->
+      <div class="field-block">
+        <label class="input-label required">Email Address</label>
+        <div class="custom-input" [class.input-focused]="emailFocused">
+          <input type="email" placeholder="you@company.com" [(ngModel)]="serviceJson.email_address" (focus)="emailFocused = true" (blur)="emailFocused = false"/>
+        </div>
+      </div>
+      <!-- PHONE -->
+      <div class="field-block">
+        <label class="input-label required"> Phone Number</label>
+        <div class="custom-input" [class.input-focused]="phoneFocused">
+          <input type="text" placeholder="+1 (555) 000-0000" [(ngModel)]="serviceJson.phone_number" (focus)="phoneFocused = true" (blur)="phoneFocused = false"/>
+        </div>
+      </div>
+      <!-- LOCATION -->
+      <div class="field-block">
+        <label class="input-label required">Site Location</label>
+        <div class="custom-input" [class.input-focused]="locationFocused" >
+          <input type="text" placeholder="City, State / Region" [(ngModel)]="serviceJson.site_location" (focus)="locationFocused = true" (blur)="locationFocused = false"/>
+        </div>
+      </div>
+    </div>
+    <!-- ======================= -->
+    <!-- PHOTO ATTACHMENTS -->
+    <!-- ======================= -->
+    <div class="form-card">
+      <div class="simple-title">Photo Attachments</div>
+      <!-- CAMERA -->
+      <div class="attachment-label">
+        <ion-icon name="camera-outline"></ion-icon>
+        <span>Capture from Camera *</span>
+      </div>
+      <div class="camera-upload-box" *ngIf="!cameraPhotoUrl" (click)="openCamera()">
+        <ion-icon name="camera-outline"></ion-icon>
+        <h3>Take Photo</h3>
+        <p>Capture equipment photo (Required)</p>
+      </div>
+      <div *ngIf="cameraPhotoUrl" class="camera-preview">
+        <img [src]="cameraPhotoUrl">
+        <div class="delete-icon" (click)="removeCameraPhoto(); $event.stopPropagation()">
+          <ion-icon name="close"></ion-icon>
+        </div>
+      </div>
+      <!-- GALLERY -->
+      <div class="attachment-label second-label">
+        <ion-icon name="images-outline"></ion-icon>
+        <span>Additional Photos from Gallery (Optional)</span>
+      </div>
+      <div class="gallery-upload-box" (click)="openGallery()">
+        <ion-icon name="image-outline"></ion-icon>
+        <h3>Upload from Gallery</h3>
+        <p>Add multiple photos (Optional)</p>
+      </div>
+      <div class="gallery-grid" *ngIf="galleryImageUrls.length">
+        <div class="gallery-item" *ngFor="let image of galleryImageUrls; let i = index">
+          <img [src]="image">
+          <div class="delete-icon" (click)="removeGalleryImage(i); $event.stopPropagation()">
+            <ion-icon name="close"></ion-icon>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- ======================= -->
+    <!-- SUBMIT -->
+    <!-- ======================= -->
+    <button class="submit-btn" [disabled]="disable" (click)="add_technical_support()">
+      <ion-icon name="build-outline"></ion-icon>
+      <span>Submit Service Request</span>
+    </button>
+  </div>
+</ion-content>

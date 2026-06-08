@@ -1,0 +1,254 @@
+/* quiz-result.page.scss */
+
+.result-content {
+    --background: #f9fafc;
+  }
+  
+  /* HEADER */
+  
+  .top-header {
+    background: linear-gradient(
+      180deg,
+      #e28209 0%,
+      #ff9800 100%
+    );
+  
+    padding: 38px 22px 46px;
+  
+    text-align: center;
+  }
+  
+  /* TROPHY */
+  
+  .trophy-wrapper {
+    display: flex;
+    justify-content: center;
+  }
+  
+  .trophy-circle {
+    width: 95px;
+    height: 95px;
+    border-radius: 50%;
+    background: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    // box-shadow: 0 10px 24px rgba(0,0,0,0.18);
+  
+    ion-icon {
+      font-size: 45px;
+      color: #d97707;
+    }
+  }
+  
+  /* TITLE */
+  
+  .top-header h1 {
+    margin-top: 24px;
+    margin-bottom: 4px;
+    color: #ffffff;
+    font-size: 34px;
+    font-weight: 800;
+  }
+  
+  .sub-text {
+    margin: 0;
+    color: #fff7ed;
+    font-size: 18px;
+    font-weight: 400;
+  }
+  
+  /* SCORE CARD */
+  
+  .score-card {
+    margin-top: 25px;
+    background: #f1aa50;
+    border-radius: 18px;
+    padding: 30px 20px;
+    -webkit-backdrop-filter: blur(8px);
+    backdrop-filter: blur(8px);
+  
+    span {
+        color: #fbecdd;
+        font-size: 18px;
+    }
+  
+    h2 {
+        margin-top: 3px;
+        margin-bottom: 0px;
+        color: #ffffff;
+        font-size: 53px;
+        font-weight: 800;
+    }
+  
+    p {
+        margin: 0;
+        color: #fbecdd;
+        font-size: 16px;
+    }
+  }
+  
+  /* MAIN */
+  
+  .main-wrapper {
+    padding: 24px 16px 40px;
+  }
+  
+  /* RESULT CARD */
+  
+  .result-card {
+    background: #ffffff;
+    border-radius: 8px;
+    padding: 24px 20px;
+    border: 1px solid #e5e7eb;
+    margin-bottom: 22px;
+  
+    h2 {
+        margin-top: 0;
+        margin-bottom: 28px;
+        color: #1b1d2e;
+        font-size: 20px;
+        font-weight: 600;
+    }
+  }
+  
+  /* ROW */
+  
+  .result-row {
+    display: flex;
+    align-items: center;
+  }
+  
+  /* ICON */
+  
+  .result-icon {
+    width: 50px;
+    height: 50px;
+    min-width: 50px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 18px;
+  
+    ion-icon {
+      font-size: 26px;
+    }
+  }
+  
+  .success-bg {
+    background: #dcfce7;
+  
+    ion-icon {
+      color: #059669;
+    }
+  }
+  
+  .danger-bg {
+    background: #fee2e2;
+  
+    ion-icon {
+      color: #dc2626;
+    }
+  }
+  
+  .info-bg {
+    background: #dbeafe;
+  
+    ion-icon {
+      color: #0284c7;
+    }
+  }
+  
+  /* INFO */
+  
+  .result-info {
+  
+    span {
+      display: block;
+      color: #64748b;
+      font-size: 18px;
+    }
+  
+    h3 {
+        margin-top: 2px;
+        margin-bottom: 0;
+        color: #1b1d2e;
+        font-size: 21px;
+        font-weight: 800;
+    }
+  }
+  
+  .status-text {
+    color: #d97707 !important;
+  }
+  
+  /* DIVIDER */
+  
+  .divider {
+    width: 100%;
+    height: 1px;
+  
+    background: #e5e7eb;
+  
+    margin: 24px 0;
+  }
+  
+  /* MESSAGE CARD */
+  
+  .message-card {
+    background: #fef3c7;
+    border: 1px solid #fcd34d;
+    border-radius: 8px;
+    padding: 22px 20px;
+    margin-bottom: 24px;
+  
+    h3 {
+      margin-top: 0;
+      color: #934110;
+      font-size: 18px;
+      font-weight: 800;
+    }
+  
+    p {
+        margin-bottom: 0;
+        color: #934110;
+        font-size: 15px;
+        line-height: 20px;
+    }
+  }
+  
+  /* BUTTON */
+  
+  .back-btn {
+    --background: #0156a3;
+    --background-hover: #0156a3;
+    --background-activated: #0156a3;
+    --border-radius: 8px;
+    height: 50px;
+    font-size: 16px;
+    font-weight: 600;
+    text-transform: none;
+    margin-bottom: 18px;
+  
+    ion-icon {
+      font-size: 16px;
+    }
+  }
+  
+  /* RETAKE */
+  
+  .retake-btn {
+    --background: #ffffff;
+    --color: #101828;
+    --border-color: #dbe2ea;
+    --border-radius: 8px;
+    height: 50px;
+    font-size: 16px;
+    font-weight: 600;
+    text-transform: none;
+  
+    ion-icon {
+      font-size: 16px;
+    }
+  }

@@ -1,0 +1,231 @@
+<!-- vfd-select.page.html -->
+
+<ion-header class="custom-header">
+  <ion-toolbar>
+    <div class="header-container">
+      <div class="back-section" (click)="goBack()">
+        <ion-icon name="chevron-back-outline"></ion-icon>
+      </div>
+      <div class="header-title">
+        AC Drive Selection Tool
+      </div>
+    </div>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" class="vfd-content">
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+  <div class="main-wrapper">
+    <!-- INFO CARD -->
+    <div class="info-card">
+      <div class="info-icon">
+        <ion-icon name="information-circle-outline"></ion-icon>
+      </div>
+      <div class="info-content">
+        <h3>Drive Selection Criteria</h3>
+        <p>
+          Complete all selection criteria to find the optimal AC
+          drive for your application
+        </p>
+      </div>
+    </div>
+
+    <!-- MAINS SUPPLY -->
+    <div class="other-custom-card">
+      <h2 class="card-title required">Mains Supply</h2>
+      <ion-radio-group [(ngModel)]="vfdJson.main_supply_id">
+        <div class="radio-grid">
+          <div class="radio-item" *ngFor="let item of main_supply_array">
+            <ion-radio [value]="item.id" mode="md"></ion-radio>
+            <span>{{item.MAIN_SUPPLY_NAME}}</span>
+          </div>
+        </div>
+      </ion-radio-group>
+    </div>
+
+    <!-- APPLICATION TYPE -->
+    <div class="other-custom-card">
+      <div class="title-with-icon">
+        <ion-icon name="options-outline"></ion-icon>
+        <h2 class="card-title">Application Type</h2>
+      </div>
+      <ion-radio-group [(ngModel)]="vfdJson.application_type_id">
+        <div class="radio-column">
+          <div class="radio-item" *ngFor="let item of application_type_array">
+            <ion-radio [value]="item.id" mode="md"></ion-radio>
+            <span>{{item.APPLICATION_TYPE_NAME}}</span>
+          </div>
+        </div>
+      </ion-radio-group>
+    </div>
+
+    <!-- MOTOR TYPE -->
+    <div class="other-custom-card">
+      <h2 class="card-title">Motor Type</h2>
+      <ion-radio-group [(ngModel)]="vfdJson.motor_type_id">
+        <div class="radio-column">
+          <div class="radio-item" *ngFor="let item of motor_type_array">
+            <ion-radio [value]="item.id" mode="md"></ion-radio>
+            <span>{{item.MOTOR_TYPE_NAME}}</span>
+          </div>
+        </div>
+      </ion-radio-group>
+    </div>
+
+    <!-- MOTOR SPECIFICATION -->
+    <div class="custom-card">
+      <h2 class="card-title">Motor Specifications</h2>
+      <div class="two-column-grid">
+        <!-- Capacity -->
+        <div>
+          <label class="field-label required">Motor Efficient Class</label>
+          <ion-select interface="popover" placeholder="Select from the list" [(ngModel)]="vfdJson.motor_make" class="custom-select">
+            <ion-select-option [value]="item.MOTOR_TYPE" *ngFor="let item of motor_efficiency_array">{{item.MOTOR_TYPE}}</ion-select-option>
+          </ion-select>
+        </div>
+        <!-- Current -->
+        <div>
+          <label class="field-label required">Motor No. of Poles</label>
+          <ion-select interface="popover" placeholder="Select from the list" [(ngModel)]="vfdJson.motor_poles" class="custom-select">
+            <ion-select-option [value]="item.MOTOR_POLES" *ngFor="let item of motor_poles_array">{{item.MOTOR_POLES}}</ion-select-option>
+          </ion-select>
+        </div>
+      </div>
+      <div class="two-column-grid">
+        <!-- Capacity -->
+        <div>
+          <label class="field-label required">Motor Capacity (kW)</label>
+          <ion-select interface="popover" placeholder="Select from the list" [(ngModel)]="vfdJson.motor_kw" class="custom-select" (ionChange)="onMotorKwChange()">
+            <ion-select-option [value]="item.MOTOR_KW" *ngFor="let item of motor_kw_array">{{item.MOTOR_KW}}</ion-select-option>
+          </ion-select>
+        </div>
+        <!-- Current -->
+        <div>
+          <label class="field-label">Motor Full Load Current (Amp)</label>
+          <ion-select interface="popover" placeholder="Select from the list" [(ngModel)]="vfdJson.motor_flc" class="custom-select" (ionChange)="onMotorFlcChange()">
+            <ion-select-option [value]="item.MOTOR_FLC" *ngFor="let item of motor_flc_array">{{item.MOTOR_FLC}}</ion-select-option>
+          </ion-select>
+        </div>
+      </div>
+      
+      <div class="bottom-note">
+        Automatically display current as per kW selected
+      </div>
+    </div>
+    <!-- AMBIENT -->
+    <div class="custom-card">
+      <h2 class="card-title required">Ambient Temperature (°C)</h2>
+      <p class="sub-note">Option to enter temperature value from 40°C to 60°C</p>
+      <div class="input-wrapper" [class.input-focused]="tempFocused">
+        <input type="number" [(ngModel)]="vfdJson.ambient_temperature" (focus)="tempFocused = true" (blur)="tempFocused = false"/>
+      </div>
+    </div>
+    <!-- ENCODER -->
+    <div class="custom-card">
+      <h2 class="card-title">Encoder Feedback</h2>
+      <ion-radio-group [(ngModel)]="encoderFeedback">
+        <div class="radio-row">
+          <div class="radio-item">
+            <ion-radio value="no" mode="md"></ion-radio>
+            <span>NO</span>
+          </div>
+          <div class="radio-item">
+            <ion-radio value="yes" mode="md"></ion-radio>
+            <span>YES</span>
+          </div>
+        </div>
+      </ion-radio-group>
+      <div *ngIf="encoderFeedback=='yes'">
+        <label class="field-label required">CAT no. of Encoder cards</label>
+        <ion-select interface="popover" placeholder="Select encoder cards" [(ngModel)]="vfdJson.encoder_feedback_id" class="custom-select">
+          <ion-select-option [value]="item.id" *ngFor="let item of encoder_feedback_array">{{item.ENCODER_FEEDBACK_NAME}}</ion-select-option>
+        </ion-select>
+      </div>
+    </div>
+
+    <!-- COMMUNICATION -->
+    <div class="custom-card">
+      <h2 class="card-title">Communication Protocol</h2>
+      <p class="sub-note">Note: Built in - Modbus RTU / RS485</p>
+      <ion-radio-group [(ngModel)]="vfdJson.communication_protocol_id">
+        <div class="radio-column">
+          <div class="radio-item" *ngFor="let item of communication_protocol_array">
+            <ion-radio [value]="item.id" mode="md"></ion-radio>
+            <span>{{item.COMMUNICATION_PROTOCOL_NAME}}</span>
+          </div>
+        </div>
+      </ion-radio-group>
+    </div>
+    <!-- FIELD IOS -->
+    <div class="custom-card">
+      <h2 class="card-title">Field I/Os</h2>
+      <div class="one-column-grid">
+        <div>
+          <label class="field-label">Digital Input (1-14)</label>
+          <div class="input-wrapper" [class.input-focused]="diFocused">
+            <input type="number" placeholder="1 to 14" [(ngModel)]="vfdJson.digital_input" (focus)="diFocused = true" (blur)="diFocused = false"/>
+          </div>
+        </div>
+        <div>
+          <label class="field-label">Digital Output (Transistor) (1-3)</label>
+          <div class="input-wrapper" [class.input-focused]="doFocused">
+            <input type="number" placeholder="1 to 3" [(ngModel)]="vfdJson.digital_output" (focus)="doFocused = true" (blur)="doFocused = false" />
+          </div>
+        </div>
+        <div>
+          <label class="field-label">Relay Output (1-6)</label>
+          <div class="input-wrapper" [class.input-focused]="relayFocused">
+            <input type="number" placeholder="1 to 6" [(ngModel)]="vfdJson.relay_output" (focus)="relayFocused = true" (blur)="relayFocused = false" />
+          </div>
+        </div>
+        <div>
+          <label class="field-label">Analog Input (1-5)</label>
+          <div class="input-wrapper" [class.input-focused]="analogFocused">
+            <input type="number" placeholder="1 to 5" [(ngModel)]="vfdJson.analog_input" (focus)="analogFocused = true" (blur)="analogFocused = false"/>
+          </div>
+        </div>
+        <div>
+          <label class="field-label">Analog Output (1-2)</label>
+          <div class="input-wrapper" [class.input-focused]="aoFocused">
+            <input type="number" placeholder="1 to 2" [(ngModel)]="vfdJson.analog_output" (focus)="aoFocused = true" (blur)="aoFocused = false"/>
+          </div>
+        </div>
+        <div>
+          <label class="field-label">Safe Torque Off (STO) Inputs (1-2)</label>
+          <div class="input-wrapper" [class.input-focused]="stoFocused">
+            <input type="number" placeholder="1 to 2" [(ngModel)]="vfdJson.safe_torque_off" (focus)="stoFocused = true" (blur)="stoFocused = false"/>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- REMOTE -->
+    <div class="custom-card">
+      <h2 class="card-title">Remote Keypad</h2>
+      <ion-radio-group [(ngModel)]="remoteKeypad">
+        <div class="radio-row">
+          <div class="radio-item">
+            <ion-radio value="yes" mode="md"></ion-radio>
+            <span>YES</span>
+          </div>
+          <div class="radio-item">
+            <ion-radio value="no" mode="md"></ion-radio>
+            <span>NO</span>
+          </div>
+        </div>
+      </ion-radio-group>
+      <div *ngIf="remoteKeypad=='yes'">
+        <label class="field-label required">Available option for remote keypad</label>
+        <ion-select interface="popover" placeholder="Select remote keypad model" [(ngModel)]="vfdJson.remote_keypad_id" class="custom-select">
+          <ion-select-option [value]="item.id" *ngFor="let item of remote_keypad_array">{{item.REMOTE_KEYPAD_NAME}}</ion-select-option>
+        </ion-select>
+      </div>
+    </div>
+    <!-- BUTTON -->
+    <ion-button expand="block" class="calculate-btn" (click)="get_motor_specifications()" [disabled]="disable">
+      <ion-icon name="calculator-outline" slot="start"></ion-icon>Calculate & Select Drive
+    </ion-button>
+  </div>
+</ion-content>

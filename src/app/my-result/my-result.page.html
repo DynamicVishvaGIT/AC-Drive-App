@@ -1,0 +1,78 @@
+<!-- quiz-result.page.html -->
+
+<ion-content [fullscreen]="true" class="result-content">
+  <!-- TOP HEADER -->
+  <div class="top-header">
+    <!-- TROPHY -->
+    <div class="trophy-wrapper">
+      <div class="trophy-circle">
+        <ion-icon name="trophy-outline"></ion-icon>
+      </div>
+    </div>
+    <!-- TITLE -->
+    <h1>{{my_results?.title}}</h1>
+    <p class="sub-text">
+      {{my_results?.subtitle}}
+    </p>
+    <!-- SCORE CARD -->
+    <div class="score-card">
+      <span>Your Score</span>
+      <h2>{{ my_results?.score_percentage }}%</h2>
+      <p>{{ my_results?.correct_answers }} out of {{ my_results?.total_questions }} correct</p>
+    </div>
+  </div>
+
+  <!-- MAIN CONTENT -->
+  <div class="main-wrapper">
+    <!-- RESULT CARD -->
+    <div class="result-card">
+      <h2>{{my_results?.quiz_name}}</h2>
+      <!-- CORRECT -->
+      <div class="result-row">
+        <div class="result-icon success-bg">
+          <ion-icon name="checkmark-circle-outline"></ion-icon>
+        </div>
+        <div class="result-info">
+          <span>Correct Answers</span>
+          <h3>{{ my_results?.correct_answers }}</h3>
+        </div>
+      </div>
+      <div class="divider"></div>
+      <!-- INCORRECT -->
+      <div class="result-row">
+        <div class="result-icon danger-bg">
+          <ion-icon name="close-circle-outline"></ion-icon>
+        </div>
+        <div class="result-info">
+          <span>Incorrect Answers</span>
+          <h3>{{ my_results?.incorrect_answers }}</h3>
+        </div>
+      </div>
+      <div class="divider"></div>
+      <!-- STATUS -->
+      <div class="result-row">
+        <div class="result-icon info-bg">
+          <ion-icon name="trophy-outline"></ion-icon>
+        </div>
+        <div class="result-info">
+          <span>Status</span>
+          <h3 class="status-text">{{ my_results?.status }}</h3>
+        </div>
+      </div>
+    </div>
+    <!-- MESSAGE CARD -->
+    <div class="message-card">
+      <h3>{{my_results?.subtitle}}</h3>
+      <p>Review the study materials and try again.{{my_results?.message}}</p>
+    </div>
+    <!-- BACK BUTTON -->
+    <ion-button expand="block" class="back-btn" (click)="goToQuizList()">
+      <ion-icon name="home-outline" slot="start"></ion-icon>Back to Quiz List
+    </ion-button>
+    <!-- RETAKE -->
+    <ion-button expand="block" fill="outline" class="retake-btn" (click)="retake_quiz()">
+      <ion-icon name="refresh-outline" slot="start"></ion-icon>
+      Retake Quiz
+    </ion-button>
+  </div>
+</ion-content>

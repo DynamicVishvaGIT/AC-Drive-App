@@ -1,0 +1,261 @@
+.success-page {
+    --background: #f9fafc;
+  }
+  
+  /* ==========================
+     FIXED HEADER SECTION
+  ========================== */
+  
+  .success-header {
+    background: linear-gradient(
+      135deg,
+      #0ca574,
+      #13c785
+    );
+  
+    padding: 30px 24px 25px;
+    text-align: center;
+    color: #ffffff;
+  }
+  
+  .success-icon-wrapper {
+    display: flex;
+    justify-content: center;
+  }
+  
+  .success-icon-circle {
+    width: 90px;
+    height: 90px;
+    background: #ffffff;
+    border-radius: 50%;
+  
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  
+    box-shadow: 0 10px 25px rgba(0,0,0,.15);
+  }
+  
+  .success-icon-circle ion-icon {
+    font-size: 46px;
+    color: #0ca574;
+  }
+  
+  .success-header h1 {
+    margin-top: 22px;
+    margin-bottom: 8px;
+  
+    font-size: 24px;
+    font-weight: 700;
+  }
+  
+  .success-subtitle {
+    font-size: 16px;
+    opacity: .95;
+    margin-bottom: 25px;
+  }
+  
+  /* ==========================
+     REGISTRATION CARD
+  ========================== */
+  
+  .registration-card {
+    background: #59c196;
+    border-radius: 16px;
+    padding: 16px;
+  }
+  
+  .reg-label {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    color: #ffffff;
+    font-size: 16px;
+  }
+  
+  .reg-label ion-icon {
+    font-size: 22px;
+  }
+  
+  .reg-id {
+    margin-top: 8px;
+    font-size: 30px;
+    font-weight: 700;
+    color: #ffffff;
+  }
+  
+  /* ==========================
+     CONTENT
+  ========================== */
+  
+  .content-section {
+    padding: 20px;
+  }
+  
+  /* ==========================
+     WHAT NEXT
+  ========================== */
+  
+  .next-card {
+    background: #deeefd;
+  
+    border: 1px solid #93c5fd;
+  
+    border-radius: 12px;
+  
+    padding: 20px;
+  }
+  
+  .next-title {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    color: #1f40af;
+  
+    font-size: 18px;
+    font-weight: 700;
+  
+    margin-bottom: 20px;
+  }
+  
+  .title-icon {
+    width: 30px;
+    height: 30px;
+  
+    background: #0584c7;
+  
+    border-radius: 50%;
+  
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .title-icon ion-icon {
+    color: #ffffff;
+    font-size: 20px;
+  }
+  
+  .step-row {
+    display: flex;
+    gap: 14px;
+  
+    margin-bottom: 14px;
+  }
+  
+  .step-number {
+    width: 30px;
+    height: 30px;
+  
+    min-width: 30px;
+  
+    border-radius: 50%;
+  
+    background: #0584c7;
+  
+    color: #ffffff;
+  
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  
+    font-weight: 700;
+  }
+  
+  .step-heading {
+    color: #1f40af;
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 4px;
+  }
+  
+  .step-text {
+    color: #1f40af;
+    font-size: 14px;
+    line-height: 18px;
+  }
+  
+  /* ==========================
+     BUTTONS
+  ========================== */
+  
+  .dashboard-btn {
+    margin-top: 20px;
+  
+    --background: #0156a3;
+    --background-hover: #0156a3;
+    --background-activated: #0156a3;
+  
+    --border-radius: 10px;
+  
+    height: 52px;
+  
+    font-size: 16px;
+    font-weight: 600;
+  
+    text-transform: none;
+  }
+  
+  .continue-btn {
+    width: 100%;
+  
+    margin-top: 14px;
+  
+    background: #ffffff;
+  
+    border: 1px solid #e2e8ef;
+  
+    border-radius: 10px;
+  
+    height: 52px;
+  
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+  
+    color: #1b1d2e;
+  
+    font-size: 16px;
+    font-weight: 500;
+  }
+  
+  /* ==========================
+     HELP CARD
+  ========================== */
+  
+  .help-card {
+    margin-top: 20px;
+  
+    background: #ffffff;
+  
+    border: 1px solid #e2e8ef;
+  
+    border-radius: 12px;
+  
+    padding: 22px;
+  }
+  
+  .help-title {
+    text-align: center;
+    color: #64748b;
+    font-size: 16px;
+    margin-bottom: 8px;
+  }
+  
+  .help-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 5px;
+    color: #1b1d2e;
+    font-weight: 500;
+    font-size: 14px;
+  }
+  
+  .help-row ion-icon {
+    font-size: 22px;
+  }

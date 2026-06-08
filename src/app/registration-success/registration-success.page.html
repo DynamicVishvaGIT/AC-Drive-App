@@ -1,0 +1,214 @@
+<ion-content [fullscreen]="true" class="success-page">
+
+  <!-- FIXED SUCCESS SECTION -->
+
+  <div class="success-header">
+
+    <div class="success-icon-wrapper">
+      <div class="success-icon-circle">
+        <ion-icon name="checkmark-outline"></ion-icon>
+      </div>
+    </div>
+
+    <h1>Registration Successful!</h1>
+
+    <p class="success-subtitle">
+      Your training registration has been submitted
+    </p>
+
+    <div class="registration-card">
+
+      <div class="reg-label">
+
+        <ion-icon name="school-outline"></ion-icon>
+
+        <span>Registration ID</span>
+
+      </div>
+
+      <div class="reg-id">
+        #11136688
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- SCROLLABLE SECTION -->
+
+  <div class="content-section">
+
+    <!-- WHAT HAPPENS NEXT -->
+
+    <div class="next-card">
+
+      <div class="next-title">
+
+        <div class="title-icon">
+          <ion-icon name="information-outline"></ion-icon>
+        </div>
+
+        <span>What Happens Next?</span>
+
+      </div>
+
+      <!-- STEP 1 -->
+
+      <div class="step-row">
+
+        <div class="step-number">1</div>
+
+        <div class="step-content">
+
+          <div class="step-heading">
+            Confirmation Call
+          </div>
+
+          <div class="step-text">
+            Our training coordinator will contact you
+            within 24-48 hours to discuss your
+            requirements.
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- STEP 2 -->
+
+      <div class="step-row">
+
+        <div class="step-number">2</div>
+
+        <div class="step-content">
+
+          <div class="step-heading">
+            Training Details
+          </div>
+
+          <div class="step-text">
+            We'll help you select the right training
+            program, schedule and location based
+            on your needs.
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- STEP 3 -->
+
+      <div class="step-row">
+
+        <div class="step-number">3</div>
+
+        <div class="step-content">
+
+          <div class="step-heading">
+            Pre-Training Materials
+          </div>
+
+          <div class="step-text">
+            Receive study materials, schedule details
+            and joining instructions via email.
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- STEP 4 -->
+
+      <div class="step-row">
+
+        <div class="step-number">4</div>
+
+        <div class="step-content">
+
+          <div class="step-heading">
+            Attend & Earn Certification
+          </div>
+
+          <div class="step-text">
+            Complete the training program and receive
+            your industry-recognized certificate.
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- DASHBOARD BUTTON -->
+
+    <ion-button
+      expand="block"
+      class="dashboard-btn"
+      (click)="goToDashboard()"
+    >
+
+      <ion-icon
+        slot="start"
+        name="home-outline">
+      </ion-icon>
+
+      Back to Dashboard
+
+    </ion-button>
+
+    <!-- CONTINUE LEARNING -->
+
+    <button
+      class="continue-btn"
+      (click)="continueLearning()"
+    >
+
+      <ion-icon
+        name="arrow-forward-outline">
+      </ion-icon>
+
+      <span>
+        Continue Learning - Take More Quizzes
+      </span>
+
+    </button>
+
+    <!-- CONTACT CARD -->
+
+    <div class="help-card">
+
+      <div class="help-title">
+        Need assistance?
+      </div>
+
+      <div class="help-row">
+
+        <ion-icon
+          name="mail-outline">
+        </ion-icon>
+
+        <span>
+          training@lauritzknudsen.com
+        </span>
+
+      </div>
+
+      <div class="help-row">
+
+        <ion-icon
+          name="call-outline">
+        </ion-icon>
+
+        <span>
+          +91-1800-XXX-XXXX
+          (Mon-Sat, 9 AM - 6 PM)
+        </span>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</ion-content>

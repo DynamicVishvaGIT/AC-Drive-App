@@ -1,0 +1,75 @@
+<!-- register.page.html -->
+
+<ion-header class="custom-header">
+  <ion-toolbar>
+    <div class="header-wrapper">
+      <!-- <div class="logo-box">
+        <ion-icon name="flash-outline"></ion-icon>
+      </div> -->
+      <div class="back-section" (click)="goToLogin()">
+        <ion-icon name="chevron-back-outline"></ion-icon>
+      </div>
+      <div class="header-text">
+        <h1>Create Account</h1>
+        <p>Join our engineering community</p>
+      </div>
+    </div>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="register-content">
+  <div class="page-container">
+    <!-- FULL NAME -->
+    <div class="input-label">Full Name</div>
+    <div class="custom-input" [class.input-focused]="nameFocused">
+      <ion-icon name="person-outline" class="left-icon"></ion-icon>
+      <input type="text" placeholder="John Smith" [(ngModel)]="user_data.full_name" (focus)="nameFocused = true" (blur)="nameFocused = false"/>
+    </div>
+    <!-- EMAIL -->
+    <div class="input-label">Email Address</div>
+    <div class="custom-input" [class.input-focused]="emailFocused">
+      <ion-icon name="mail-outline" class="left-icon" ></ion-icon>
+      <input type="email" placeholder="you@company.com" [(ngModel)]="user_data.email_id" (focus)="emailFocused = true" (blur)="emailFocused = false"/>
+    </div>
+    <!-- PHONE -->
+    <div class="input-label">Phone Number</div>
+    <div class="custom-input" [class.input-focused]="phoneFocused">
+      <ion-icon name="call-outline" class="left-icon"></ion-icon>
+      <input type="tel" placeholder="+1 (555) 000-0000"[(ngModel)]="user_data.mobile_number" (focus)="phoneFocused = true" (blur)="phoneFocused = false"/>
+    </div>
+    <!-- COMPANY --> 
+    <div class="input-label">Company Name</div>
+    <div class="custom-input" [class.input-focused]="companyFocused">
+      <ion-icon name="business-outline" class="left-icon"></ion-icon>
+      <input type="text" placeholder="Your Company Ltd." [(ngModel)]="user_data.company_name" (focus)="companyFocused = true" (blur)="companyFocused = false"/>
+    </div>
+    <!-- PASSWORD -->
+    <div class="input-label password-label">Password</div>
+    <div class="custom-input" [class.input-focused]="passwordFocused">
+      <ion-icon name="lock-closed-outline" class="left-icon"></ion-icon>
+      <input [type]="showPassword ? 'text' : 'password'" placeholder="Create a strong password" [(ngModel)]="user_data.password" (focus)="passwordFocused = true" (blur)="passwordFocused = false"/>
+      <ion-icon [name]="showPassword ? 'eye-off-outline' : 'eye-outline'" class="right-icon" (click)="togglePassword()" ></ion-icon>
+    </div>
+    <!-- CONFIRM PASSWORD -->
+    <div class="input-label password-label">Confirm Password</div>
+    <div class="custom-input" [class.input-focused]="passwordCFocused">
+      <ion-icon name="lock-closed-outline" class="left-icon"></ion-icon>
+      <input [type]="showCPassword ? 'text' : 'password'" placeholder="Create a strong password" [(ngModel)]="user_data.confirm_Password" (focus)="passwordCFocused = true" (blur)="passwordCFocused = false"/>
+      <ion-icon [name]="showCPassword ? 'eye-off-outline' : 'eye-outline'" class="right-icon" (click)="toggleCPassword()" ></ion-icon>
+    </div>
+    <!-- CHECKBOX -->
+    <div class="terms-wrapper">
+      <ion-checkbox [(ngModel)]="agreeTerms" ></ion-checkbox>
+      <p>I agree to the<span>Terms of Service</span>and<span>Privacy Policy</span></p>
+    </div>
+    <!-- BUTTON -->
+    <button class="register-btn" (click)="createAccount()" [disabled]="disable">Create Account</button>
+    <!-- LOGIN -->
+    <div class="signin-text">
+      Already have an account?
+      <span (click)="goToLogin()">
+        Sign In
+      </span>
+    </div>
+  </div>
+</ion-content>

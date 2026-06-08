@@ -1,0 +1,135 @@
+<ion-content [fullscreen]="true" class="success-content">
+
+  <div class="success-container">
+
+    <!-- SUCCESS ICON -->
+
+    <div class="success-icon-box">
+
+      <div class="success-circle">
+
+        <ion-icon
+          name="checkmark-circle-outline">
+        </ion-icon>
+
+      </div>
+
+    </div>
+
+    <!-- TITLE -->
+
+    <h1 class="success-title">
+      Request Submitted!
+    </h1>
+
+    <p class="success-subtitle">
+      Your service request has been received
+    </p>
+
+    <div class="ticket-row">
+
+      <span class="ticket-label">
+        Ticket ID:
+      </span>
+
+      <span class="ticket-value">
+        SRV-2024-0342
+      </span>
+
+    </div>
+
+    <!-- SUPPORT CARD -->
+
+    <div class="info-card">
+
+      <div class="icon-box">
+
+        <ion-icon
+          name="headset-outline">
+        </ion-icon>
+
+      </div>
+
+      <div class="info-content">
+
+        <div class="info-title">
+          24/7 Support Active
+        </div>
+
+        <div class="info-subtitle">
+          Our technical team has been notified
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- RESPONSE CARD -->
+
+    <div class="info-card">
+
+      <div class="icon-box">
+
+        <ion-icon
+          name="construct-outline">
+        </ion-icon>
+
+      </div>
+
+      <div class="info-content">
+
+        <div class="info-title">
+          Response Time
+        </div>
+
+        <div class="info-subtitle">
+          Expected response within
+          2-4 business hours
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- EMERGENCY CARD -->
+
+    <div class="emergency-card">
+
+      <div class="emergency-title">
+        Emergency Contact
+      </div>
+
+      <div class="emergency-text">
+        For critical issues, call:
+        <strong>+1-800-LK-SUPPORT</strong>
+      </div>
+
+    </div>
+
+    <!-- BUTTONS -->
+
+    <ion-button
+      expand="block"
+      class="dashboard-btn"
+      (click)="backToDashboard()">
+
+      <ion-icon
+        slot="start"
+        name="home-outline">
+      </ion-icon>
+
+      Back to Dashboard
+
+    </ion-button>
+
+    <button
+      class="another-btn"
+      (click)="submitAnotherRequest()">
+
+      Submit Another Request
+
+    </button>
+
+  </div>
+
+</ion-content>

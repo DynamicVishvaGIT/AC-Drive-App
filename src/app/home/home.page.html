@@ -1,20 +1,166 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>
-      Blank
-    </ion-title>
-  </ion-toolbar>
-</ion-header>
+<!-- home.page.html -->
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content [fullscreen]="true" class="home-content">
+  <!-- HEADER SECTION -->
+  <div class="top-section">
+    <!-- Header Row -->
+    <div class="header-row">
+      <!-- Left -->
+      <div class="user-section">
+        <div class="avatar-box">
+          <ion-icon name="person-outline"></ion-icon>
+        </div>
+        <div class="welcome-text">
+          <p>Welcome back,</p>
+          <h2>Engineering Pro</h2>
+        </div>
+      </div>
+      <!-- Right -->
+      <!-- <div class="logo-box">
+        <ion-icon name="flash-outline"></ion-icon>
+      </div> -->
+    </div>
 
-  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
+    <!-- System Status Card -->
+    <div class="status-card">
+      <div>
+        <p class="status-label">System Status</p>
+        <h3>All Systems Operational</h3>
+      </div>
+      <div class="live-dot"></div>
+    </div>
   </div>
+
+  <!-- MAIN CONTENT -->
+  <div class="main-container">
+    <!-- OVERVIEW -->
+    <h1 class="section-title">Overview</h1>
+    <div class="overview-grid">
+      <!-- Card 1 -->
+      <div class="overview-card">
+        <div class="card-top">
+          <div class="icon-box blue">
+            <ion-icon name="flash-outline"></ion-icon>
+          </div>
+          <div class="badge success">+12%</div>
+        </div>
+        <p>Total AC Drives</p>
+        <h2>{{dashboard_data?.total_ac_drives}}</h2>
+      </div>
+      <!-- Card 2 -->
+      <div class="overview-card">
+        <div class="card-top">
+          <div class="icon-box purple">
+            <ion-icon name="book-outline"></ion-icon>
+          </div>
+        </div>
+        <p>Total Quizzes</p>
+        <h2>{{dashboard_data?.total_quizzes}}</h2>
+      </div>
+
+      <!-- Card 3 -->
+      <div class="overview-card">
+        <div class="card-top">
+          <div class="icon-box green">
+            <ion-icon name="pulse-outline"></ion-icon>
+          </div>
+          <div class="badge success">67%</div>
+        </div>
+        <p>Attempted Quizzes</p>
+        <h2>{{dashboard_data?.attempted_quizzes}}</h2>
+      </div>
+
+      <!-- Card 4 -->
+      <div class="overview-card">
+        <div class="card-top">
+          <div class="icon-box orange">
+            <ion-icon name="people-outline"></ion-icon>
+          </div>
+          <div class="badge success">+15</div>
+        </div>
+        <p>Total Leads</p>
+        <h2>{{dashboard_data?.total_leads}}</h2>
+      </div>
+
+      <!-- Card 5 -->
+      <div class="overview-card">
+        <div class="card-top">
+          <div class="icon-box cyan">
+            <ion-icon name="document-text-outline"></ion-icon>
+          </div>
+          <div class="badge success">+8</div>
+        </div>
+        <p>Total Enquiries</p>
+        <h2>{{dashboard_data?.total_enquiries}}</h2>
+      </div>
+
+      <!-- Card 6 -->
+      <div class="overview-card">
+        <div class="card-top">
+          <div class="icon-box yellow">
+            <ion-icon name="construct-outline"></ion-icon>
+          </div>
+          <div class="badge danger">-3</div>
+        </div>
+        <p>Service Requests</p>
+        <h2>{{dashboard_data?.service_requests}}</h2>
+      </div>
+    </div>
+
+    <!-- QUICK ACTIONS -->
+    <h1 class="section-title quick-title">Quick Actions</h1>
+
+    <div
+      class="action-card"
+      *ngFor="let action of quickActions"
+      (click)="openAction(action.title)"
+    >
+
+      <div class="action-left">
+
+        <div class="icon-box" [ngClass]="action.color">
+          <ion-icon [name]="action.icon"></ion-icon>
+        </div>
+
+        <span>{{ action.title }}</span>
+
+      </div>
+
+      <ion-icon
+        name="chevron-forward-outline"
+        class="forward-icon"
+      ></ion-icon>
+
+    </div>
+
+    <!-- RECENT ACTIVITY -->
+    <h1 class="section-title recent-title">Recent Activity</h1>
+
+    <div class="activity-card">
+
+      <div
+        class="activity-item"
+        *ngFor="let item of recentActivities; let last = last"
+      >
+
+        <div class="activity-left">
+
+          <div class="activity-icon" [ngClass]="item.bg">
+            <ion-icon [name]="item.icon"></ion-icon>
+          </div>
+
+          <div class="activity-content">
+            <h3>{{ item.title }}</h3>
+            <p>{{ item.subtitle }}</p>
+            <span>{{ item.time }}</span>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
 </ion-content>

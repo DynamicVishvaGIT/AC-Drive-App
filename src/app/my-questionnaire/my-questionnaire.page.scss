@@ -1,0 +1,237 @@
+/* quiz-play.page.scss */
+
+.quiz-header ion-toolbar {
+    --background: #0156a3;
+    --color: #ffffff;
+    --min-height: 135px;
+    // padding-top: 6px;
+    padding: 10px 14px 14px 0px;
+    // box-shadow: 0 2px 10px rgba(0, 0, 0, 0.12);
+  }
+  
+  /* TOP HEADER */
+  
+  .header-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  
+    padding: 0 18px;
+  }
+  
+  /* BACK */
+  
+  .back-section {
+  
+    ion-icon {
+      font-size: 25px;
+      color: #ffffff;
+    }
+  }
+  
+  /* TIMER */
+  
+  .timer-section {
+    display: flex;
+    align-items: center;
+  
+    ion-icon {
+      font-size: 24px;
+      color: #ffffff;
+      margin-right: 10px;
+    }
+  
+    span {
+      color: #ffffff;
+      font-size: 20px;
+      font-weight: 700;
+    }
+  }
+  
+  /* STATUS */
+  
+  .question-status {
+    margin-top: 15px;
+    padding: 0 18px;
+  }
+  
+  .status-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 7px;
+  
+    span {
+      color: #ffffff;
+      font-size: 18px;
+      font-weight: 500;
+    }
+  }
+  
+  /* PROGRESS */
+  
+  .progress-wrapper {
+    width: 100%;
+    height: 7px;
+    background: #0284c7;
+    border-radius: 30px;
+    overflow: hidden;
+  }
+  
+  .progress-fill {
+    height: 100%;
+    background: #ffffff;
+    border-radius: 30px;
+    transition: width 0.3s ease;
+  }
+  
+  /* CONTENT */
+  
+  .quiz-content {
+    --background: #f9fafc;
+  }
+  
+  .main-wrapper {
+    padding: 22px 16px 140px;
+  }
+  
+  /* QUESTION CARD */
+  
+  .question-card {
+    background: #ffffff;
+    border-radius: 8px;
+    padding: 22px 18px 10px;
+    border: 1px solid #e2e8ef;
+  }
+  
+  /* QUESTION */
+  
+  .question-text {
+    margin-top: 0;
+    margin-bottom: 24px;
+    color: #1b1d2e;
+    font-size: 20px;
+    font-weight: 600;
+    line-height: 28px;
+  }
+  
+  /* OPTION */
+  
+  .option-box {
+    width: 100%;
+    min-height: 64px;
+    border: 2px solid #e2e8ef;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    padding: 0 18px;
+    margin-bottom: 18px;
+    transition: 0.3s ease;
+  
+    span {
+      color: #1b1d2e;
+      font-size: 15px;
+      font-weight: 500;
+      line-height: 17px;
+    }
+  }
+  
+  /* SELECTED */
+  
+  .selected-option {
+    border: 3px solid #0156a3;
+    background: #dbeafe;
+  }
+  
+  /* RADIO */
+  
+  .radio-circle {
+    width: 24px;
+    height: 24px;
+    min-width: 24px;
+    border: 2px solid #d1d9e2;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 18px;
+    background: #ffffff;
+    transition: 0.3s ease;
+  }
+  
+  /* SELECTED RADIO */
+  
+  .selected-option .radio-circle {
+    background: #0156a3;
+    border-color: #0156a3;
+  }
+  
+  /* INNER WHITE DOT */
+  
+  .radio-inner {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #ffffff;
+  }
+  
+  /* FOOTER */
+  
+  .quiz-footer {
+    background: #ffffff;
+    padding: 14px 16px 20px;
+    border-top: 1px solid #e5e7eb;
+  }
+  
+  .footer-wrapper {
+    display: flex;
+    align-items: center;
+  
+    gap: 14px;
+  }
+  
+  /* BUTTON */
+  
+  .prev-btn {
+    flex: 1;
+    --border-color: #dbe2ea;
+    --color: #101828;
+    --border-radius: 8px;
+    height: 45px;
+    font-size: 14px;
+    font-weight: 600;
+    text-transform: none;
+  }
+  
+  .next-btn {
+    flex: 1;
+    --background: #0156a3;
+    --background-hover: #0156a3;
+    --background-activated: #0156a3;
+    --border-radius: 8px;
+    height: 45px;
+    font-size: 14px;
+    font-weight: 600;
+    text-transform: none;
+  }
+  
+  .next-btn.button-disabled {
+    opacity: 1;
+    --background: #9cc2e1;
+  }
+  
+  .submit-btn {
+    flex: 1;
+    --background: #069668;
+    --background-hover: #069668;
+    --background-activated: #069668;
+    --border-radius: 8px;
+    height: 45px;
+    font-size: 14px;
+    font-weight: 600;
+    text-transform: none;
+  
+    ion-icon {
+      font-size: 16px;
+    }
+  }

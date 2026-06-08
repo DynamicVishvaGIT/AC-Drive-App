@@ -1,0 +1,314 @@
+<ion-header class="custom-header">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button
+        defaultHref="/vfd-select">
+      </ion-back-button>
+    </ion-buttons>
+    <ion-title>Drive Selection Results</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" class="result-content">
+  <!-- SUCCESS CARD -->
+  <div class="success-card">
+    <div class="success-top">
+      <ion-icon name="checkmark-circle" class="success-icon"></ion-icon>
+      <div>
+        <div class="success-title">Drive Selection Complete</div>
+        <div class="success-subtitle">Based on your specifications, we recommend the following AC drive configuration</div>
+      </div>
+    </div>
+  </div>
+  <!-- RECOMMENDED CONFIGURATION -->
+  <div class="section-card">
+    <div class="section-header">Recommended Configuration</div>
+    <div class="section-body">
+      <!-- MAIN IMAGE -->
+      <img src="https://images.unsplash.com/photo-1703181226035-dfe869fe93cd?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxpbmR1c3RyaWFsJTIwQUMlMjBkcml2ZSUyMFZGRCUyMG1vdG9yfGVufDF8fHx8MTc3MjYxNjA5Mnww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral" class="main-image"/>
+      <!-- TWO IMAGES -->
+      <div class="image-row">
+        <div class="small-image-card">
+          <img src="https://images.unsplash.com/photo-1686710278078-26f028c6dad8?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxlbGVjdHJpY2FsJTIwY29udHJvbCUyMHBhbmVsJTIwYXV0b21hdGlvbnxlbnwxfHx8fDE3NzI1NDUxMjN8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral" class="small-image"/>
+          <div class="image-label">Control Panel</div>
+        </div>
+        <div class="small-image-card">
+          <img src="https://images.unsplash.com/photo-1736161999630-9feb825596a6?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxpbmR1c3RyaWFsJTIwbW90b3IlMjBkcml2ZSUyMGludmVydGVyfGVufDF8fHx8MTc3MjYxNjA5M3ww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral" class="small-image"/>
+          <div class="image-label">Drive Components</div>
+        </div>
+      </div>
+      <!-- SERIES CARD -->
+      <div class="series-card">KD700 Series - Professional Grade Industrial AC Drive System</div>
+    </div>
+  </div>
+  <!-- SELECTED VFD DETAILS -->
+  <div class="section-card">
+    <div class="section-header">Selected VFD Details</div>
+    <div class="section-body">
+      <div class="vfd-layout">
+        <!-- LEFT SIDE -->
+        <div class="vfd-left">
+          <div class="detail-item">
+            <div class="detail-label">Motor FLC (Amp)</div>
+            <div class="detail-value">2.08</div>
+          </div>
+          <div class="detail-item">
+            <div class="detail-label">VFD CAT No.</div>
+            <div class="detail-value blue-text">XDCP-D1K5-01A</div>
+          </div>
+          <div class="detail-item">
+            <div class="detail-label">VFD rating (VFD 50 / VX / NFD)</div>
+            <div class="detail-value">1.5kW / 3.7A</div>
+          </div>
+          <div class="detail-item">
+            <div class="detail-label">VFD Current & service temperature</div>
+            <div class="detail-value">Derated for 40°C ambient</div>
+          </div>
+        </div>
+        <!-- RIGHT SIDE IMAGE -->
+        <div class="vfd-image-box">
+          <img src="assets/images/vfd-drive.png" class="vfd-image"/>
+        </div>
+      </div>
+      <!-- NOTE CARD -->
+      <div class="note-card">
+        <div class="note-header">
+          <div class="note-title">Note</div>
+          <ion-button size="small" class="download-btn" (click)="downloadDatasheet()">
+            <ion-icon name="download-outline" slot="start" ></ion-icon>Download PDF 
+           </ion-button>
+        </div>
+        <div class="note-content">Refer
+          <strong>XD1000</strong>datasheet for detailed specifications.
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- BUILT IN -->
+  <div class="section-card">
+    <div class="section-header">Built-in</div>
+    <div class="section-body">
+      <div class="builtin-row">
+        <div class="builtin-label">
+          Communication Protocol
+        </div>
+        <div class="builtin-value">
+          Modbus RTU (RS485)
+        </div>
+      </div>
+      <div class="divider"></div>
+      <div class="builtin-row">
+        <div class="builtin-label">
+          DC Reactor (DCR)
+        </div>
+        <div class="builtin-value">
+          No Reactor Required (5kW)
+        </div>
+      </div>
+      <div class="builtin-row">
+        <div class="builtin-label">
+          Not Required
+        </div>
+        <div class="builtin-value">
+          EMI Filter Category
+        </div>
+      </div>
+      <div class="builtin-row">
+        <div class="builtin-label">
+          C3 (Industrial Environment)
+        </div>
+        <div class="builtin-value">
+          VFD to Motor cable distance
+        </div>
+      </div>
+      <div class="builtin-row">
+        <div class="builtin-label">
+          Max 100m (Standard),
+          150m with output reactor
+        </div>
+      </div>
+      <div class="divider"></div>
+      <p class="builtin-note">
+        Depending on the selected VFD CAT No.,
+        the built-in features should be displayed here.
+        Refer individual sheet of VFD data sheet
+        for built-in details.
+      </p>
+    </div>
+  </div>
+  <!-- SECTION 2 STARTS HERE -->
+  <!-- I/O COUNT -->
+  <div class="section-card">
+    <div class="section-header">
+      I/O Count
+    </div>
+    <div class="section-body">
+      <div class="sub-heading">
+        Built-in I/Os (Standard):
+      </div>
+      <ul class="io-list">
+        <li>Digital Input: 6</li>
+        <li>Digital Output (Transistor): 2</li>
+        <li>Output Relay: 1</li>
+        <li>Analog Input: 2</li>
+        <li>Analog Output: 1</li>
+        <li>Pulse Output: 1</li>
+      </ul>
+    </div>
+  </div>
+  <!-- OPTIONS SELECTED -->
+  <div class="section-card">
+    <div class="section-header">
+      Options Selected
+    </div>
+    <div class="section-body">
+      <div class="option-item">
+        <div class="option-label">
+          Remote Keypad
+        </div>
+        <div class="option-value">
+          XDCP-OPC-100
+        </div>
+      </div>
+      <div class="option-item">
+        <div class="option-label">
+          I/O Expansion Card
+        </div>
+        <div class="option-value">
+          XDCP-IO-DI8
+          (8 Digital Inputs)
+        </div>
+      </div>
+      <div class="option-item">
+        <div class="option-label">
+          Communication Option Card
+        </div>
+        <div class="option-value">
+          N/A
+        </div>
+      </div>
+      <div class="option-item">
+        <div class="option-label">
+          Encoder Option
+        </div>
+        <div class="option-value">
+          N/A
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- PERIPHERALS -->
+  <div class="section-card">
+    <div class="section-header">
+      Peripherals
+    </div>
+    <div class="section-body">
+      <!-- DBU -->
+      <div class="option-item">
+        <div class="option-label">
+          Dynamic Braking Unit (DBU)
+        </div>
+        <div class="option-value">
+          XDCP-DBU-5K5
+        </div>
+      </div>
+      <div class="option-item">
+        <div class="option-label">
+          Dynamic Braking Resistor (DBR)
+          Rating
+        </div>
+        <div class="option-value">
+          100Ω / 200W
+        </div>
+      </div>
+      <div class="divider"></div>
+      <!-- REACTOR -->
+      <div class="inner-heading">
+        Reactor
+      </div>
+      <div class="option-item">
+        <div class="option-label">
+          AC Input Reactor
+        </div>
+        <div class="option-value">
+          XDCP-AIR-5K5
+        </div>
+      </div>
+      <div class="option-item">
+        <div class="option-label">
+          Motor (Output) Choke
+        </div>
+        <div class="option-value">
+          Optional –
+          As per site requirement
+        </div>
+      </div>
+      <div class="divider"></div>
+      <!-- CIRCUIT BREAKER -->
+      <div class="inner-heading">
+        Circuit Breaker
+      </div>
+      <div class="option-item">
+        <div class="option-label">
+          MCCB
+        </div>
+        <div class="option-value">
+          MCCB DZ Range:
+          16A - 25A
+        </div>
+      </div>
+      <p class="peripheral-note">
+        Depending on the selected CAT No.
+        of VFD, the compatible peripheral
+        parts / ratings would be displayed here.
+        For peripheral data refer
+        "Peripheral Data".
+      </p>
+      <div class="option-item">
+        <div class="option-label">
+          Magnetic Contactor
+        </div>
+        <div class="option-value">
+          MC-18A
+        </div>
+      </div>
+      <div class="option-item">
+        <div class="option-label">
+          Fuse
+        </div>
+        <div class="option-value">
+          HN-16A
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- INCLUDE PERIPHERALS -->
+  <div class="include-card">
+    <ion-checkbox slot="start" [(ngModel)]="includePeripherals"></ion-checkbox>
+    <div class="include-text">
+      <div class="include-title">
+        Include Peripherals in Report
+      </div>
+      <div class="include-subtitle">
+        DBU, Resistors, MCCB,
+        Magnetic Contactor,
+        and Fuse details
+      </div>
+    </div>
+  </div>
+  <!-- CREATE ENQUIRY -->
+  <ion-button expand="block" class="enquiry-btn" (click)="createEnquiry()">
+    <ion-icon name="document-text-outline" slot="start"></ion-icon>
+    Create Enquiry for this Configuration
+  </ion-button>
+  <!-- DOWNLOAD REPORT -->
+  <ion-button expand="block" class="report-btn" (click)="downloadSelectionReport()">
+    <ion-icon name="download-outline" slot="start"></ion-icon>
+    Download Selection Report
+  </ion-button>
+  <!-- NEW CALCULATION -->
+  <button class="new-calculation-btn" (click)="newCalculation()">
+    <ion-icon name="arrow-back-outline"></ion-icon>
+    <span>New Calculation</span>
+  </button>
+</ion-content>

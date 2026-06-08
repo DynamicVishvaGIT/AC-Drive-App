@@ -1,0 +1,410 @@
+/* =========================================
+   PAGE
+========================================= */
+
+.result-content {
+    --background: #f9fafc;
+  }
+  
+  .custom-header ion-toolbar {
+    --background: #0156a3;
+    --color: #ffffff;
+  }
+  
+  .custom-header ion-title {
+    color: #ffffff;
+    font-size: 18px;
+    font-weight: 600;
+  }
+  
+  .custom-header ion-back-button {
+    --color: #ffffff;
+  }
+  
+  ion-content {
+    --padding-start: 14px;
+    --padding-end: 14px;
+    --padding-top: 14px;
+    --padding-bottom: 24px;
+  }
+  
+  /* =========================================
+     SUCCESS CARD
+  ========================================= */
+  
+  .success-card {
+    background: #dcfce7;
+    border: 1px solid #86efac;
+    border-radius: 10px;
+    padding: 14px;
+    margin: 14px 0;
+  }
+  
+  .success-top {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+  }
+  
+  .success-icon {
+    color: #16a34a;
+    font-size: 22px;
+    min-width: 22px;
+  }
+  
+  .success-title {
+    color: #14532d;
+    font-size: 15px;
+    font-weight: 700;
+    margin-bottom: 3px;
+  }
+  
+  .success-subtitle {
+    color: #14532d;
+    font-size: 13px;
+    line-height: 19px;
+  }
+  
+  /* =========================================
+     COMMON SECTION CARD
+  ========================================= */
+  
+  .section-card {
+    background: #ffffff;
+    border: 1px solid #e2e8ef;
+    border-radius: 10px;
+    overflow: hidden;
+    margin-bottom: 16px;
+  }
+  
+  .section-header {
+    background: #0156a3;
+    color: #ffffff;
+    padding: 12px 16px;
+    font-size: 16px;
+    font-weight: 600;
+  }
+  
+  .section-body {
+    padding: 14px;
+  }
+  
+  /* =========================================
+     IMAGES
+  ========================================= */
+  
+  .main-image {
+    width: 100%;
+    height: 190px;
+    object-fit: cover;
+    border-radius: 8px;
+    display: block;
+  }
+  
+  .image-row {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+  }
+  
+  .small-image-card {
+    flex: 1;
+  }
+  
+  .small-image {
+    width: 100%;
+    height: 95px;
+    object-fit: cover;
+    border-radius: 6px;
+    display: block;
+  }
+  
+  .image-label {
+    text-align: center;
+    margin-top: 6px;
+    font-size: 12px;
+    color: #64748b;
+  }
+  
+  .series-card {
+    background: #f0f4f8;
+    border-radius: 8px;
+    padding: 12px;
+    margin-top: 12px;
+    color: #64748b;
+    text-align: center;
+    font-size: 13px;
+    line-height: 20px;
+  }
+  
+  /* =========================================
+     VFD DETAILS
+  ========================================= */
+  
+  .vfd-layout {
+    display: flex;
+    gap: 12px;
+  }
+  
+  .vfd-left {
+    flex: 1;
+  }
+  
+  .vfd-image-box {
+    width: 95px;
+    min-width: 95px;
+    background: #f7f8f7;
+    border-left: 1px solid #e2e8ef;
+    border-top: 1px solid #e2e8ef;
+    border-bottom: 1px solid #e2e8ef;
+    border-top-left-radius: 8px;
+    border-bottom-left-radius: 8px;
+  
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .vfd-image {
+    width: 70px;
+    height: auto;
+  }
+  
+  .detail-item {
+    margin-bottom: 14px;
+  }
+  
+  .detail-label {
+    color: #64748b;
+    font-size: 12px;
+    margin-bottom: 3px;
+  }
+  
+  .detail-value {
+    color: #1b1d2e;
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 20px;
+  }
+  
+  .blue-text {
+    color: #0156a3;
+  }
+  
+  /* =========================================
+     NOTE CARD
+  ========================================= */
+  
+  .note-card {
+    margin-top: 10px;
+    background: #fff9e6;
+    border: 1px solid #ffd666;
+    border-radius: 8px;
+    padding: 12px;
+  }
+  
+  .note-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  
+  .note-title {
+    font-size: 14px;
+    font-weight: 700;
+    color: #1b1d2e;
+  }
+  
+  .note-content {
+    margin-top: 10px;
+    color: #1b1d2e;
+    font-size: 13px;
+    line-height: 20px;
+  }
+  
+  .download-btn {
+    --background: #0156a3;
+    --border-radius: 6px;
+    height: 34px;
+    font-size: 12px;
+    text-transform: none;
+  }
+  
+  /* =========================================
+     BUILT IN / OPTIONS
+  ========================================= */
+  
+  .builtin-row,
+  .option-item {
+    margin-bottom: 12px;
+  }
+  
+  .builtin-label,
+  .option-label {
+    color: #64748b;
+    font-size: 12px;
+    margin-bottom: 4px;
+  }
+  
+  .builtin-value,
+  .option-value {
+    color: #1b1d2e;
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 20px;
+  }
+  
+  .divider {
+    height: 1px;
+    background: #e2e8ef;
+    margin: 14px 0;
+  }
+  
+  .builtin-note,
+  .peripheral-note {
+    color: #64748b;
+    font-size: 12px;
+    line-height: 20px;
+    margin: 0;
+  }
+  
+  .inner-heading {
+    color: #1b1d2e;
+    font-size: 15px;
+    font-weight: 700;
+    margin-bottom: 12px;
+  }
+  
+  /* =========================================
+     IO COUNT
+  ========================================= */
+  
+  .sub-heading {
+    font-size: 14px;
+    font-weight: 700;
+    color: #1b1d2e;
+    margin-bottom: 10px;
+  }
+  
+  .io-list {
+    margin: 0;
+    padding-left: 18px;
+  }
+  
+  .io-list li {
+    color: #1b1d2e;
+    font-size: 14px;
+    margin-bottom: 8px;
+    line-height: 20px;
+  }
+  
+  /* =========================================
+     INCLUDE CARD
+  ========================================= */
+  
+  .include-card {
+    background: #ffffff;
+    border: 1px solid #e2e8ef;
+    border-radius: 10px;
+    padding: 14px;
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    margin-bottom: 16px;
+  }
+  
+  .include-title {
+    color: #1b1d2e;
+    font-size: 15px;
+    font-weight: 600;
+  }
+  
+  .include-subtitle {
+    color: #64748b;
+    font-size: 13px;
+    line-height: 19px;
+    margin-top: 4px;
+  }
+  
+  ion-checkbox {
+    --size: 20px;
+    --checkbox-background: #ffffff;
+    --border-color: #0156a3;
+    --background-checked: #0156a3;
+    --border-color-checked: #0156a3;
+  }
+  
+  /* =========================================
+     BUTTONS
+  ========================================= */
+  
+  .enquiry-btn {
+    --background: #069668;
+    --background-hover: #069668;
+    --background-activated: #069668;
+    --border-radius: 8px;
+  
+    height: 48px;
+    margin-bottom: 12px;
+  
+    font-size: 15px;
+    font-weight: 500;
+    text-transform: none;
+  }
+  
+  .report-btn {
+    --background: #0156a3;
+    --background-hover: #0156a3;
+    --background-activated: #0156a3;
+    --border-radius: 8px;
+  
+    height: 48px;
+    margin-bottom: 12px;
+  
+    font-size: 15px;
+    font-weight: 600;
+    text-transform: none;
+  }
+  
+  .new-calculation-btn {
+    width: 100%;
+    height: 48px;
+  
+    background: #ffffff;
+    border: 1px solid #e2e8ef;
+    border-radius: 8px;
+  
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+  
+    color: #1b1d2e;
+    font-size: 15px;
+    font-weight: 600;
+  
+    margin-bottom: 25px;
+  }
+  
+  .new-calculation-btn ion-icon {
+    font-size: 18px;
+  }
+  
+  /* =========================================
+     MOBILE
+  ========================================= */
+  
+  @media (max-width: 480px) {
+    .vfd-layout {
+      gap: 8px;
+    }
+  
+    .vfd-image-box {
+      width: 80px;
+      min-width: 80px;
+    }
+  
+    .vfd-image {
+      width: 58px;
+    }
+  }

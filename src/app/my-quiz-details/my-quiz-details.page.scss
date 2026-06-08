@@ -1,0 +1,202 @@
+/* quiz-details.page.scss */
+
+.custom-header ion-toolbar {
+    --background: #0156a3;
+    --color: #ffffff;
+    --min-height: 60px;
+    // padding-top: 3px;
+    padding: 10px 14px 14px 0px;
+    // box-shadow: 0 2px 10px rgba(0, 0, 0, 0.12);
+  }
+  
+  .header-container {
+    display: flex;
+    align-items: center;
+    padding: 0 18px;
+  
+    h1 {
+      margin: 0;
+      color: #ffffff;
+      font-size: 20px;
+      font-weight: 700;
+      margin-left: 11px;
+      margin-bottom: 6px;
+    }
+  }
+  
+  /* BACK */
+  
+  .back-section {
+    ion-icon {
+      font-size: 24px;
+      color: #ffffff;
+    }
+  }
+  
+  /* CONTENT */
+  
+  .quiz-content {
+    --background: #f9fafc;
+  }
+  
+  .main-wrapper {
+    padding: 20px 16px 120px;
+  }
+  
+  /* DETAILS CARD */
+  
+  .details-card {
+    background: #ffffff;
+    border-radius: 8px;
+    padding: 22px 18px;
+    border: 1px solid #e5e7eb;
+    margin-bottom: 22px;
+  }
+  
+  /* TOP */
+  
+  .top-section {
+    display: flex;
+    align-items: flex-start;
+  }
+  
+  /* ICON */
+  
+  .icon-box {
+    width: 60px;
+    height: 60px;
+    min-width: 60px;
+    background: #dbeafe;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 18px;
+  
+    ion-icon {
+      font-size: 30px;
+      color: #0284c7;
+    }
+  }
+  
+  /* TITLE */
+  
+  .title-section {
+  
+    h2 {
+        margin: 0;
+        color: #1b1d2e;
+        font-size: 19px;
+        font-weight: 600;
+        line-height: 26px;
+    }
+  
+    p {
+        margin-top: 3px;
+        margin-bottom: 0;
+        color: #64748b;
+        font-size: 18px;
+    }
+  }
+  
+  /* DESCRIPTION */
+  
+  .description-text {
+    margin-top: 15px;
+    color: #202233;
+    font-size: 17px;
+    line-height: 24px;
+  }
+  
+  /* STATS */
+  
+  .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+    margin-top: 15px;
+  }
+  
+  .stats-card {
+    background: #f0f4f8;
+    border-radius: 8px;
+    padding: 18px 12px;
+    text-align: center;
+  
+    span {
+      display: block;
+      color: #64748b;
+      font-size: 14px;
+    }
+  
+    h3 {
+        margin-top: 12px;
+        margin-bottom: 0;
+        color: #101828;
+        font-size: 18px;
+        font-weight: 600;
+    }
+  }
+  
+  /* INSTRUCTION CARD */
+  
+  .instruction-card {
+    background: #fef3c7;
+    border: 1px solid #fcd34d;
+    border-radius: 8px;
+    padding: 12px 20px;
+    margin-bottom: 24px;
+  }
+  
+  /* HEADER */
+  
+  .instruction-header {
+    display: flex;
+    align-items: center;
+  
+    ion-icon {
+        font-size: 28px;
+        color: #d97707;
+        margin-right: 12px;
+    }
+  
+    h3 {
+        margin: 0;
+        color: #92400d;
+        font-size: 20px;
+        font-weight: 800;
+    }
+  }
+  
+  /* LIST */
+  
+  .instruction-list {
+    margin-top: 18px;
+    margin-bottom: 0;
+  
+    padding-left: 24px;
+  
+    li {
+        color: #92400d;
+        font-size: 16px;
+        line-height: 22px;
+        margin-bottom: 10px;
+    }
+  }
+  
+  /* BUTTON */
+  
+  .start-btn {
+    --background: #0156a3;
+    --background-hover: #0156a3;
+    --background-activated: #0156a3;
+    --border-radius: 8px;
+    height: 50px;
+    font-size: 17px;
+    font-weight: 500;
+    text-transform: none;
+  
+    ion-icon {
+      font-size: 20px;
+    }
+  }

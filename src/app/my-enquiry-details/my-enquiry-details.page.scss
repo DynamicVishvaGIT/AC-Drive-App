@@ -1,0 +1,252 @@
+/* enquiry-details.page.scss */
+
+.details-content {
+    --background: #f9fafc;
+  }
+  
+  /* HEADER */
+  
+  .custom-header ion-toolbar {
+    --background: #0156a3;
+    --color: #ffffff;
+    --min-height: 60px;
+    // padding-top: 3px;
+    padding: 10px 14px 14px 0px;
+    // box-shadow: 0 2px 12px rgba(0,0,0,0.15);
+  }
+  
+  .header-container {
+    padding: 0 18px;
+  }
+  
+  .back-section {
+    display: flex;
+    align-items: center;
+  }
+  
+  .back-section ion-icon {
+    font-size: 24px;
+    color: #ffffff;
+    margin-right: 14px;
+  }
+  
+  .back-section h1 {
+    margin: 0;
+    color: #ffffff;
+    font-size: 20px;
+    font-weight: 700;
+  }
+  
+  /* MAIN */
+  
+  .main-wrapper {
+    padding: 18px 16px 40px;
+  }
+  
+  /* TOP CARD */
+  
+  .top-card {
+    background: #ffffff;
+    border-radius: 8px;
+    padding: 22px 18px;
+    border: 1px solid #e5e7eb;
+    margin-bottom: 22px;
+  }
+  
+  /* TITLE ROW */
+  
+  .title-row {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+  }
+  
+  .title-row h2 {
+    margin: 0;
+    width: 72%;
+    color: #101828;
+    font-size: 18px;
+    font-weight: 600;
+    line-height: 26px;
+  }
+  
+  /* OPEN BADGE */
+  
+  .open-badge {
+    background: #dbeafe;
+    color: #0584c7;
+    padding: 5px 10px;
+    border-radius: 985px;
+    font-size: 14px;
+    font-weight: 500;
+    border: 1px solid #93c5fd;
+  }
+  
+  /* ID */
+  
+  .enquiry-id {
+    margin-top: 5px;
+    margin-bottom: 6px;
+    color: #64748b;
+    font-size: 14px;
+
+  }
+  
+  /* MODEL */
+  
+  .model-row {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+  
+  .model-row ion-icon {
+    font-size: 22px;
+    color: #64748b;
+    margin-right: 12px;
+  }
+  
+  .model-row span {
+    color: #0156a3;
+    font-size: 16px;
+    font-weight: 500;
+  }
+  
+  /* PRIORITY */
+  
+  .priority-badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 7px 9px;
+    border-radius: 999px;
+    font-size: 12px;
+    font-weight: 500;
+  }
+  
+  .high-priority {
+    background: #ffe2e2;
+    color: #db2627;
+    border: 1px solid #fca9a9;
+  }
+  
+  /* DETAIL CARD */
+  
+  .detail-card {
+    background: #ffffff;
+    border-radius: 13px;
+    overflow: hidden;
+    border: 1px solid #e5e7eb;
+    margin-bottom: 22px;
+  }
+  
+  /* CARD HEADER */
+  
+  .card-header {
+    background: #0156b3;
+    color: #ffffff;
+    padding: 16px 18px;
+    font-size: 20px;
+    font-weight: 700;
+  }
+  
+  /* BODY */
+  
+  .card-body {
+    padding: 22px 18px;
+  }
+  
+  /* INFO ROW */
+  
+  .info-row {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 18px;
+  }
+  
+  .info-row:last-child {
+    margin-bottom: 0;
+  }
+  
+  .info-row ion-icon {
+    font-size: 20px;
+    color: #64748b;
+    margin-right: 15px;
+    margin-top: 10px;
+  }
+  
+  /* LABEL */
+  
+  .label {
+    margin: 0 0 2px;
+    color: #64748b;
+    font-size: 14px;
+  }
+  
+  /* VALUE */
+  
+  .info-row h3,
+  .spec-item h3 {
+    margin: 0px;
+    color: #1b1d2e;
+    font-size: 16px;
+    font-weight: 500;
+  }
+  
+  /* SPECS */
+  
+  .spec-item {
+    margin-bottom: 18px;
+  }
+  
+  .spec-item:last-child {
+    margin-bottom: 0;
+  }
+  
+  /* BLUE TEXT */
+  
+  .blue-text {
+    color: #0156a3 !important;
+  }
+  
+  /* NOTES */
+  
+  .notes-text {
+    margin: 0;
+    color: #1b1d2e;
+    font-size: 16px;
+    line-height: 24px;
+  }
+  
+  /* BUTTON */
+  
+  .download-btn {
+    --background: #0156a3;
+    --background-hover: #0156a3;
+    --background-activated: #0156a3;
+    --border-radius: 8px;
+    height: 50px;
+    font-size: 14px;
+    font-weight: 500;
+    text-transform: none;
+    margin-bottom: 18px;
+  
+    ion-icon {
+      font-size: 22px;
+    }
+  }
+  
+  /* BACK BUTTON */
+  
+  .back-btn {
+    --border-color: #dbe1e8;
+    --color: #101828;
+    --border-radius: 8px;
+    height: 50px;
+    font-size: 14px;
+    font-weight: 500;
+    text-transform: none;
+  
+    ion-icon {
+      font-size: 22px;
+    }
+  }

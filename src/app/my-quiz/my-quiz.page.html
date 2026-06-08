@@ -1,0 +1,120 @@
+<!-- quiz.page.html -->
+
+<ion-header class="quiz-header">
+  <ion-toolbar>
+    <div class="header-container">
+      <h1>Quiz Module</h1>
+      <!-- <div class="notification-section">
+        <ion-icon name="notifications-outline"></ion-icon>
+        <div class="notification-dot"></div>
+      </div> -->
+    </div>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" class="quiz-content">
+  <div class="main-wrapper">
+    <!-- STATS CARD -->
+    <div class="stats-card">
+      <div class="stat-item">
+        <p>Completed</p>
+        <h2>{{completedCount}}</h2>
+      </div>
+      <div class="stat-item">
+        <p>Pending</p>
+        <h2>{{pendingCount}}</h2>
+      </div>
+      <div class="stat-item">
+        <p>Avg Score</p>
+        <h2>{{avgScore}}%</h2>
+      </div>
+    </div>
+    <!-- TRAINING CARD -->
+    <div class="training-card">
+      <div class="training-top">
+        <div class="training-icon">
+          <ion-icon name="school-outline"></ion-icon>
+        </div>
+        <div class="training-content">
+          <h2>Professional Training</h2>
+          <p>
+            Gain hands-on experience with industry-recognized
+            certification programs
+          </p>
+        </div>
+      </div>
+      <ion-button expand="block" class="training-btn" (click)="goToTrainingRegistartion()">Register for Training
+        <ion-icon name="arrow-forward-outline" slot="end"></ion-icon>
+      </ion-button>
+    </div>
+    <!-- TABS -->
+    <div class="tab-section">
+      <div class="custom-tab" [class.active-tab]="selectedTab === 'All'" (click)="load_quiz('All')">
+        All Quizzes
+      </div>
+      <div class="custom-tab" [class.active-tab]="selectedTab === 'Pending'" (click)="load_quiz('Pending')">
+        Pending
+      </div>
+      <div class="custom-tab" [class.active-tab]="selectedTab === 'Completed'" (click)="load_quiz('Completed')">
+        Completed
+      </div>
+    </div>
+    <!-- QUIZ LIST -->
+    <div *ngIf="dataLoaded && filteredQuizzes.length>0">
+      <div class="quiz-card" *ngFor="let quiz of filteredQuizzes" (click)="goToQuizDetails(quiz)">
+        <!-- TOP -->
+        <div class="quiz-top">
+          <div class="quiz-left">
+            <div class="quiz-icon" [ngClass]="quiz.status === 'Completed'? 'completed-bg' : 'pending-bg'">
+              <ion-icon [name]="quiz.status === 'Completed' ? 'checkmark-circle-outline' : 'ellipse-outline'"></ion-icon>
+            </div>
+            <div class="quiz-details">
+              <h2>{{ quiz.quiz_name }}</h2>
+              <p class="quiz-type">
+                {{ quiz.quiz_description }}
+              </p>
+              <!-- BADGES -->
+              <div class="badge-row">
+                <div class="custom-badge" [ngClass]="getLevelClass(quiz.quiz_level)">
+                  {{ quiz.quiz_level }}
+                </div>
+                <div class="custom-badge-status" [ngClass]="getStatusClass(quiz.status)">
+                  {{ quiz.status }}
+                </div>
+              </div>
+            </div>
+          </div>
+          <ion-icon name="chevron-forward-outline" class="forward-icon"></ion-icon>
+        </div>
+        <!-- DIVIDER -->
+        <div class="divider"></div>
+        <!-- BOTTOM -->
+        <div class="quiz-bottom">
+          <div class="bottom-left">
+            <div class="info-item">
+              <ion-icon name="book-outline"></ion-icon>
+              <span>{{ quiz.total_questions }} questions</span>
+            </div>
+            <div class="info-item">
+              <ion-icon name="time-outline"></ion-icon>
+              <span>{{ quiz.duration_minutes }}</span>
+            </div>
+          </div>
+          <div class="score-text" [ngClass]="quiz.score_percentage >= 80 ? 'score-green': 'score-red'" *ngIf="quiz.score_percentage">
+            Score: {{ quiz.score_percentage }}%
+          </div>
+        </div>
+        <!-- LAST ATTEMPT -->
+        <div class="last-attempt" *ngIf="quiz.last_attempt">
+          Last attempt: {{ quiz.last_attempt }}
+        </div>
+      </div>
+    </div>
+    <div class="quiz-card" *ngIf="dataLoaded && filteredQuizzes.length==0">
+      <div class="empty-state">
+        <ion-icon name="book-outline" class="empty-icon"></ion-icon>
+        <p>Quiz information will be available here</p>
+      </div>
+    </div>
+  </div>
+</ion-content>

@@ -1,0 +1,264 @@
+/* login.page.scss */
+
+.login-content {
+  --background: #0156a3;
+}
+
+.login-wrapper {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* BLUE AREA */
+
+.top-section {
+  background: #0156a3;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  padding-top: max(25px, env(safe-area-inset-top));
+  padding-bottom: 30px;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.logo {
+  // width: 280px;
+  width: 182px;
+  max-width: 100%;
+  display: block;
+}
+
+/* WHITE CARD */
+
+.login-card {
+  flex: 1;
+
+  background: #ffffff;
+
+  border-top-left-radius: 36px;
+  border-top-right-radius: 36px;
+
+  padding: 32px 28px 40px;
+
+  display: flex;
+  flex-direction: column;
+}
+
+/* TITLE */
+
+.login-card h2 {
+  font-size: 24px;
+  font-weight: 700;
+  color: #1b1d2e;
+  margin: 0;
+}
+
+.sub-title {
+  color: #64748b;
+  font-size: 16px;
+  margin-top: 4px;
+  margin-bottom: 24px;
+}
+
+/* FORGOT PASSWORD */
+
+.forgot-text {
+  margin-top: 18px;
+  margin-bottom: 28px;
+
+  font-size: 15px;
+  font-weight: 700;
+
+  color: #0156a3;
+}
+
+/* BUTTON */
+
+.signin-btn {
+  --background: #0156a3;
+  --background-hover: #0156a3;
+  --background-activated: #0156a3;
+  --border-radius: 10px;
+
+  height: 50px;
+
+  font-size: 16px;
+  font-weight: 600;
+
+  text-transform: none;
+}
+
+/* SIGNUP */
+
+.signup-text {
+  text-align: center;
+
+  margin-top: 28px;
+
+  font-size: 15px;
+
+  color: #64748b;
+}
+
+.signup-text span {
+  color: #0156a3;
+  font-weight: 700;
+}
+  
+  .input-label {
+    font-size: 18px;
+    font-weight: 500;
+    color: #1b1d2e;
+    margin-bottom: 8px;
+  }
+  
+  .password-label {
+    margin-top: 16px;
+  }
+  
+  .custom-input {
+    width: 100%;
+    height: 45px;
+    background: #f9fafc;
+    border: 1px solid #d9e1ea;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    padding-left: 11px;
+    padding-right: 11px;
+    transition: 0.3s ease;
+  
+    input {
+        width: 100%;
+        border: none;
+        outline: none;
+        background: transparent;
+        font-size: 16px;
+        color: #101828;
+        padding-left: 8px;
+        padding-right: 8px;
+    }
+  
+    input::placeholder {
+      color: #64748b;
+    }
+  }
+  
+  .input-focused {
+    border: 2px solid
+      color-mix(in oklab, var(--ion-color-primary) 50%, transparent);
+  
+    box-shadow: 0 0 0 4px rgba(22, 95, 168, 0.12);
+  }
+  
+  .left-icon {
+    font-size: 22px;
+    color: #64748b;
+  }
+  
+  .right-icon {
+    font-size: 22px;
+    color: #64748b;
+    cursor: pointer;
+  }
+  
+  .remember-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  
+    margin-top: 17px;
+    margin-bottom: 34px;
+  }
+  
+  .remember-left {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  
+    span {
+      font-size: 16px;
+      font-weight: 600;
+      color: #6a7990;
+    }
+  }
+  
+  ion-checkbox {
+    --size: 18px;
+    --checkbox-background: #ffffff;
+    --border-color: #8b97a8;
+    --border-width: 2px;
+    --checkmark-color: #ffffff;
+    --background-checked: #165fa8;
+    --border-color-checked: #165fa8;
+  }
+  
+  // .forgot-text {
+  //   font-size: 15px;
+  //   font-weight: 700;
+  //   color: #165fa8;
+  // }
+  
+  // .signin-btn {
+  //   --background: #0156a3;
+  //   --background-hover: #0156a3;
+  //   --background-activated: #0156a3;
+  //   --border-radius: 9px;
+  //   height: 48px;
+  //   font-size: 16px;
+  //   font-weight: 600;
+  //   text-transform: none;
+  //   margin: 0;
+  // }
+  
+  // .signup-text {
+  //   text-align: center;
+  //   margin-top: 26px;
+  //   font-size: 15px;
+  //   color: #64748b;
+  
+  //   span {
+  //     color: #0156a3;
+  //     font-weight: 700;
+  //     margin-left: 4px;
+  //   }
+  // }
+  
+  .divider {
+    width: 100%;
+    height: 1px;
+    background: #e5e7eb;
+  
+    margin-top: 38px;
+    margin-bottom: 18px;
+  }
+  
+  .footer-text {
+    text-align: center;
+    color: #6a7990;
+    font-size: 14px;
+    line-height: 15px;
+  }
+  
+  .admin-text {
+    margin-top: 7px;
+  }
+  
+  /* Tablet */
+  @media screen and (min-width: 768px) {
+  
+    .top-section {
+      padding-top: 70px;
+      padding-bottom: 140px;
+    }
+  
+    .login-card {
+      max-width: 650px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+  }

@@ -1,0 +1,82 @@
+<!-- quiz-details.page.html -->
+
+<ion-header class="custom-header">
+  <ion-toolbar>
+    <div class="header-container">
+      <div class="back-section" (click)="goBack()">
+        <ion-icon name="chevron-back-outline"></ion-icon>
+      </div>
+      <h1>{{quiz_details_data?.quiz_name}}</h1>
+    </div>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" class="quiz-content">
+  <div class="main-wrapper">
+    <!-- QUIZ DETAILS CARD -->
+    <div class="details-card">
+      <!-- TOP -->
+      <div class="top-section">
+        <div class="icon-box">
+          <ion-icon name="book-outline"></ion-icon>
+        </div>
+        <div class="title-section">
+          <h2>{{quiz_details_data?.quiz_name}}</h2>
+          <p>Basics</p>
+        </div>
+      </div>
+      <!-- DESCRIPTION -->
+      <div class="description-text">
+        {{quiz_details_data?.quiz_description}}
+      </div>
+      <!-- STATS -->
+      <div class="stats-grid">
+        <!-- QUESTIONS -->
+        <div class="stats-card">
+          <span>Questions</span>
+          <h3>{{quiz_details_data?.total_questions}}</h3>
+        </div>
+
+        <!-- DURATION -->
+        <div class="stats-card">
+          <span>Duration</span>
+          <h3>{{quiz_details_data?.duration_minutes}} min</h3>
+        </div>
+        <!-- LEVEL -->
+        <div class="stats-card">
+          <span>Level</span>
+          <h3>{{quiz_details_data?.quiz_level}}</h3>
+        </div>
+      </div>
+    </div>
+
+    <!-- INSTRUCTION CARD -->
+    <div class="instruction-card">
+      <!-- HEADER -->
+      <div class="instruction-header">
+        <ion-icon name="information-circle-outline"></ion-icon>
+        <h3>Instructions</h3>
+      </div>
+      <!-- BULLETS -->
+      <ul class="instruction-list">
+        <li *ngFor="let data of quiz_details_data?.instructions">
+          {{data.description}}
+        </li>
+        <!-- <li>
+          You can navigate between questions using Next/Previous
+        </li>
+        <li>
+          Review your answers before final submission
+        </li>
+        <li>
+          Passing score: 70%
+        </li> -->
+      </ul>
+    </div>
+
+    <!-- START BUTTON -->
+    <ion-button expand="block" class="start-btn" (click)="startQuiz()">
+      <ion-icon name="book-outline" slot="start"></ion-icon>Start Quiz
+    </ion-button>
+  </div>
+</ion-content>

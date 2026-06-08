@@ -1,0 +1,79 @@
+<!-- enquiry.page.html -->
+<ion-header class="custom-header">
+  <ion-toolbar>
+    <div class="header-container">
+      <h1>Enquiry Management</h1>
+      <div class="training-icon" (click)="createEnquiry()">
+        <ion-icon name="add-outline"></ion-icon>create
+      </div>
+      <!-- <div class="notification-section" (click)="createEnquiry()">
+        <ion-icon name="add-outline"></ion-icon>
+      </div> -->
+    </div>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" class="enquiry-content">
+  <div class="main-wrapper">
+    <!-- TOP STATUS CARDS -->
+    <div class="stats-grid">
+      <div class="stats-card">
+        <h2 class="dark">5</h2>
+        <p>Total</p>
+      </div>
+      <div class="stats-card">
+        <h2 class="blue">2</h2>
+        <p>Open</p>
+      </div>
+      <div class="stats-card">
+        <h2 class="orange">1</h2>
+        <p>Progress</p>
+      </div>
+      <div class="stats-card">
+        <h2 class="green">1</h2>
+        <p>Resolved</p>
+      </div>
+    </div>
+    <!-- SEARCH -->
+    <div class="search-row">
+      <div class="search-box" [class.search-focused]="searchFocused">
+        <ion-icon name="search-outline" class="search-icon"></ion-icon>
+        <input type="text" placeholder="Search enquiries..." [(ngModel)]="searchText" (focus)="searchFocused = true" (blur)="searchFocused = false" />
+      </div>
+      <!-- FILTER -->
+      <!-- <div class="filter-box">
+        <ion-icon name="funnel-outline"></ion-icon>
+      </div> -->
+    </div>
+    <!-- BUTTON -->
+    <!-- <ion-button expand="block" class="create-btn" (click)="createEnquiry()">
+      <ion-icon name="add-outline" slot="start"></ion-icon>Create New Enquiry
+    </ion-button> -->
+    <!-- HEADING -->
+    <h2 class="section-title">Recent Enquiries</h2>
+    <!-- ENQUIRY LIST -->
+    <div class="enquiry-card" *ngFor="let enquiry of enquiries" (click)="goToEnquiryDetails()">
+      <!-- TOP -->
+      <div class="card-top">
+        <div class="top-left">
+          <span class="enq-id">{{ enquiry.id }}</span>
+          <span class="status-dot" [ngClass]="getPriorityDotClass(enquiry.priority)"></span>
+          <span class="priority-text" [ngClass]="getPriorityTextClass(enquiry.priority)">{{ enquiry.priority }}</span>
+        </div>
+        <ion-icon name="chevron-forward-outline" class="forward-icon"></ion-icon>
+      </div>
+      <!-- TITLE -->
+      <h3 class="enquiry-title">{{ enquiry.title }}</h3>
+      <!-- CODE -->
+      <p class="enquiry-code">{{ enquiry.code }}</p>
+      <!-- DIVIDER -->
+      <div class="divider"></div>
+      <!-- BOTTOM -->
+      <div class="card-bottom">
+        <div class="status-badge" [ngClass]="getStatusClass(enquiry.status)">{{ enquiry.status }}</div>
+        <div class="date-text">{{ enquiry.date }}</div>
+        <div class="name-text">{{ enquiry.name }}</div>
+      </div>
+    </div>
+  </div>
+</ion-content>

@@ -1,0 +1,36 @@
+<ion-content [fullscreen]="true" class="login-content">
+  <div class="login-wrapper">
+    <!-- TOP BLUE SECTION -->
+    <div class="top-section">
+      <img
+        src="assets/images/Lauritz_Knudsen_White.png"
+        class="logo"
+        alt="Lauritz Knudsen"
+      />
+    </div>
+    <!-- WHITE CARD -->
+    <div class="login-card">
+      <h2>Welcome Back</h2>
+      <p class="sub-title">Sign in to access your dashboard</p>
+      <!-- Email -->
+      <div class="input-label">Email Address</div>
+      <div class="custom-input" [class.input-focused]="emailFocused">
+        <ion-icon name="mail-outline" class="left-icon"></ion-icon>
+        <input type="email" placeholder="you@company.com" [(ngModel)]="login_data.email_id" (focus)="emailFocused = true" (blur)="emailFocused = false"/>
+      </div>
+      <!-- Password -->
+      <div class="input-label password-label">Password</div>
+      <div class="custom-input" [class.input-focused]="passwordFocused">
+        <ion-icon name="lock-closed-outline" class="left-icon"></ion-icon>
+        <input [type]="showPassword ? 'text' : 'password'" placeholder="Enter your password" [(ngModel)]="login_data.password" (focus)="passwordFocused = true" (blur)="passwordFocused = false"/>
+        <ion-icon [name]="showPassword ? 'eye-off-outline' : 'eye-outline'" class="right-icon" (click)="togglePassword()" ></ion-icon>
+      </div>
+      <div class="forgot-text">Forgot Password?</div>
+      <ion-button expand="block" class="signin-btn" (click)="onLogin()">Sign In</ion-button>
+      <div class="signup-text" (click)="goToSignup()">
+        Don't have an account?
+        <span>Sign Up</span>
+      </div>
+    </div>
+  </div>
+</ion-content>

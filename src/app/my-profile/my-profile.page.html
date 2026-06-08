@@ -1,0 +1,84 @@
+<!-- profile.page.html -->
+
+<ion-header class="custom-header">
+  <ion-toolbar>
+    <div class="header-container">
+      <h1>Profile</h1>
+    </div>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="profile-content">
+  <div class="page-wrapper">
+    <!-- ======================= -->
+    <!-- PROFILE CARD -->
+    <!-- ======================= -->
+    <div class="profile-card">
+      <!-- TOP ROW -->
+      <div class="profile-top">
+        <div class="profile-icon-box">
+          <ion-icon name="person-outline"></ion-icon>
+        </div>
+        <div class="profile-info">
+          <h2>{{currentUser.FULL_NAME}}</h2>
+          <p>{{currentUser.EMAIL_ID}}</p>
+        </div>
+      </div>
+      <!-- DETAILS -->
+      <div class="details-list">
+        <!-- EMAIL -->
+        <div class="detail-row">
+          <ion-icon name="mail-outline"></ion-icon>
+          <span>{{currentUser.EMAIL_ID}}</span>
+        </div>
+        <!-- PHONE -->
+        <div class="detail-row">
+          <ion-icon name="call-outline"></ion-icon>
+          <span>{{currentUser.PHONE_NUMBER}}</span>
+        </div>
+        <!-- COMPANY -->
+        <div class="detail-row">
+          <ion-icon name="business-outline"></ion-icon>
+          <span>{{currentUser.COMPANY_NAME}}</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- ======================= -->
+    <!-- MENU CARD -->
+    <!-- ======================= -->
+
+    <!-- <div class="menu-card">
+      <div class="menu-item" (click)="goToEditProfile()">
+        <div class="menu-left">
+          <ion-icon name="create-outline"></ion-icon>
+          <span>Edit Profile</span>
+        </div>
+        <ion-icon name="chevron-forward-outline" class="forward-icon"></ion-icon>
+      </div>
+      <div class="divider"></div>
+      <div class="menu-item" (click)="goToSettings()">
+        <div class="menu-left">
+          <ion-icon name="settings-outline"></ion-icon>
+          <span>Settings</span>
+        </div>
+        <ion-icon name="chevron-forward-outline" class="forward-icon" ></ion-icon>
+      </div>
+      <div class="divider"></div>
+      <div class="menu-item" (click)="goToSupport()" >
+        <div class="menu-left">
+          <ion-icon name="help-circle-outline"></ion-icon>
+          <span>Help & Support</span>
+        </div>
+        <ion-icon name="chevron-forward-outline" class="forward-icon"></ion-icon>
+      </div>
+    </div> -->
+    <!-- ======================= -->
+    <!-- LOGOUT -->
+    <!-- ======================= -->
+    <button class="logout-btn" (click)="logout()">
+      <ion-icon name="log-out-outline"></ion-icon>
+      <span>Logout</span>
+    </button>
+  </div>
+</ion-content>

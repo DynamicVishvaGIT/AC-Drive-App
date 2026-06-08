@@ -1,0 +1,72 @@
+<!-- quiz-play.page.html -->
+
+<ion-header class="quiz-header">
+  <ion-toolbar>
+    <!-- TOP ROW -->
+    <div class="header-top">
+      <!-- BACK -->
+      <div class="back-section" (click)="goBack()">
+        <ion-icon name="chevron-back-outline"></ion-icon>
+      </div>
+      <!-- TIMER -->
+      <div class="timer-section">
+        <ion-icon name="time-outline"></ion-icon>
+        <span>{{ formattedTime }}</span>
+      </div>
+    </div>
+    <!-- QUESTION STATUS -->
+    <div class="question-status">
+      <div class="status-row">
+        <span>Question {{ currentQuestionIndex + 1 }} of {{ my_questions.length }}</span>
+        <span>{{ progressPercentage }}%</span>
+      </div>
+      <!-- PROGRESS -->
+      <div class="progress-wrapper">
+        <div class="progress-fill" [style.width.%]="progressPercentage"></div>
+      </div>
+    </div>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" class="quiz-content">
+  <div class="main-wrapper">
+    <!-- QUESTION CARD -->
+    <div class="question-card">
+      <!-- QUESTION -->
+      <h2 class="question-text">{{ currentQuestion?.question }}</h2>
+      <!-- OPTIONS -->
+      <div class="option-box" *ngFor="let option of currentQuestion?.options" [class.selected-option]="currentQuestion?.selected_option_id === option?.option_id" (click)="selectOption(option)">
+      <div class="radio-circle">
+        <div class="radio-inner" *ngIf="currentQuestion?.selected_option_id === option?.option_id"></div>
+      </div>
+      <span>{{ option?.option_text }}</span>
+      <!-- <span>{{ option.option_text }}</span> -->
+    </div>
+      <!-- <div class="option-box" *ngFor="let option of currentQuestion.options" [class.selected-option]="currentQuestion.selectedAnswer === option" (click)="selectOption(option)">
+        <div class="radio-circle">
+          <div class="radio-inner" *ngIf="currentQuestion.selectedAnswer === option"></div>
+        </div>
+        <span>{{ option }}</span>
+      </div> -->
+    </div>
+  </div>
+
+</ion-content>
+<!-- FOOTER BUTTONS -->
+<ion-footer class="quiz-footer">
+  <div class="footer-wrapper">
+    <!-- PREVIOUS -->
+    <ion-button fill="outline" class="prev-btn" *ngIf="currentQuestionIndex > 0" (click)="previousQuestion()">
+      Previous
+    </ion-button>
+    <!-- NEXT -->
+    <ion-button *ngIf="currentQuestionIndex !== my_questions.length - 1" class="next-btn" [disabled]="!currentQuestion?.selected_option_id" (click)="nextQuestion()">
+      Next
+    </ion-button>
+    <!-- SUBMIT -->
+    <ion-button *ngIf="currentQuestionIndex === my_questions.length - 1" class="submit-btn" [disabled]="!currentQuestion?.selected_option_id" (click)="submitQuiz()">
+      <ion-icon name="trophy-outline" slot="start" ></ion-icon>
+      Submit Quiz
+    </ion-button>
+  </div>
+</ion-footer>
