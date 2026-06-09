@@ -332,7 +332,7 @@ export class VdfSelectToolPage implements OnInit {
         // this.router.navigate(['/my-quiz']);
       const navigationExtras: NavigationExtras = {
         state: {
-          vdfSelectionData: response.data
+          vdfSelectionData: response
         }
       };
         this.router.navigate(['/vdf-selection-result'],navigationExtras);
