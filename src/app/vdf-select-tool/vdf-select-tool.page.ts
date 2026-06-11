@@ -3,8 +3,8 @@ import { NavController, ToastController } from '@ionic/angular';
 import { User } from '../user';
 import { Api } from '../api';
 import { Common } from '../common';
-import { Subject, takeUntil } from 'rxjs';
-import { NavigationExtras, Router } from '@angular/router';
+import { filter, Subject, takeUntil } from 'rxjs';
+import { NavigationEnd, NavigationExtras, Router } from '@angular/router';
 
 @Component({
   selector: 'app-vdf-select-tool',
@@ -17,22 +17,22 @@ export class VdfSelectToolPage implements OnInit {
   private _unsubscribeAll: Subject<any>;
 
   currentUser:any;
-  vfdJson:any = {main_supply_id:'', application_type_id:'', motor_type_id:'', motor_make:'', motor_poles:'', motor_kw:'', motor_flc:'', 
-    ambient_temperature:'', encoder_feedback_id:'', communication_protocol_id:'', digital_input:'', digital_output:'', relay_output:'', analog_input:'',
-    analog_output:'', safe_torque_off:'', remote_keypad_id:''};
-  main_supply_array:any=[];
-  application_type_array:any=[];
-  motor_type_array:any=[];
+  vfdJson:any = {main_supply:'', application_type:'', motor_type:'', motor_make:'', motor_poles:'', motor_kw:'', motor_flc:'', encoder_feedback_choice:'false',
+    ambient_temperature:'', encoder_feedback:'', communication_protocol:'', digital_input:'', digital_output:'', relay_output:'', analog_input:'',
+    analog_output:'', safe_torque_off:'',remote_keypad_choice:'true', remote_keypad:''};
+  main_supply_array:any=[{"id": "1Ph 200V","MAIN_SUPPLY_NAME": "1 Ph 200"},{"id": "3Ph 200V","MAIN_SUPPLY_NAME": "3 Ph 200"},{"id": "3Ph 400V","MAIN_SUPPLY_NAME": "3 Ph 400"}];
+  application_type_array:any=[{"id": "CT_DBU_GRAVITY","APPLICATION_TYPE_NAME": "Constant Torque with DBU, Gravity"},{"id": "CT_DBU_NO_GRAV","APPLICATION_TYPE_NAME": "Constant Torque with DBU, Non Gravity"},{"id": "CT_NO_DBU","APPLICATION_TYPE_NAME": "Constant Torque without DBU"},{"id": "VT","APPLICATION_TYPE_NAME": "Variable Torque"}];
+  motor_type_array:any=[{"id": "Asynchronous","MOTOR_TYPE_NAME": "Asynchronous Motor"},{"id": "Reluctance","MOTOR_TYPE_NAME": "Reluctance Motor"},{"id": "Synchronous PM","MOTOR_TYPE_NAME": "Synchronous PM motor"}];
   motor_poles_array: any=[];
   motor_kw_array: any=[];
   motor_flc_array:any=[];
   motor_efficiency_array:any=[];
   isProgrammaticUpdate = false;
-  encoder_feedback_array: any=[];
-  communication_protocol_array:any=[];
-  encoderFeedback = 'no';
-  remoteKeypad = 'yes';
-  remote_keypad_array:any=[];
+  encoder_feedback_array: any=[{"id": "XDEN-AEI-V01","ENCODER_FEEDBACK_NAME": "Analog Encoder - XDEN-AEI-V01"},{"id": "XDEN-DEI-V01","ENCODER_FEEDBACK_NAME": "Digital Encoder - XDEN-DEI-V01"},{"id": "XDEN-HEI-V01","ENCODER_FEEDBACK_NAME": "HTL Encoder - XDEN-HEI-V01"},{"id": "XDEN-REI-V01","ENCODER_FEEDBACK_NAME": "Resolver - XDEN-REI-V01"}];
+  communication_protocol_array:any=[{"id": "modbus-tcp-ethernet","COMMUNICATION_PROTOCOL_NAME": "Modbus TCP / Ethernet IP"},{"id": "profibus-dp","COMMUNICATION_PROTOCOL_NAME": "Profibus DP"},{"id": "profinet","COMMUNICATION_PROTOCOL_NAME": "Profinet"},{"id": "profinet-s2-redundant","COMMUNICATION_PROTOCOL_NAME": "Profinet S2 Redundant"}];
+  // encoderFeedback = 'no';
+  // remoteKeypad = 'yes';
+  remote_keypad_array:any=[{"id": "XDCP-OCP-100","REMOTE_KEYPAD_NAME": "XDCP-OCP-100 (IP54 LED Remote Keypad)"},{"id": "XDCP-OCP-S50","REMOTE_KEYPAD_NAME": "XDCP-OCP-S50 (Graphical LCD)"}];
   disable: boolean = false;
 
   tempFocused = false;
@@ -42,6 +42,7 @@ export class VdfSelectToolPage implements OnInit {
   analogFocused = false;
   aoFocused = false;
   stoFocused = false;
+  errMsg: boolean = false;
 
   constructor(private navCtrl: NavController, private toastController: ToastController, private userService: User, private apiService: Api, private commonService: Common,
     private router: Router
@@ -62,16 +63,30 @@ export class VdfSelectToolPage implements OnInit {
           console.log('44',this.currentUser);
         }
       }
-      this.load_main_supply();
-      this.load_application_type();
-      this.load_motor_type();
-      this.load_motor_poles();
-      this.load_motor_kw();
-      this.load_motor_flc();
-      this.load_motor_efficiency();
-      this.load_encoder_feedback();
-      this.load_communication_protocol();
-      this.load_remote_keypad();
+      this.router.events.pipe(
+        filter((event): event is NavigationEnd => event instanceof NavigationEnd) // Ensure the event is of type NavigationEnd
+        ).subscribe((event: NavigationEnd) => {
+          if (event.url.startsWith('/vdf-select-tool')) { // Check if user navigated back to a specific URL
+            this.load_motor_poles();
+            this.load_motor_kw();
+            this.load_motor_flc();
+            this.load_motor_efficiency();
+            this.vfdJson = {main_supply:'', application_type:'', motor_type:'', motor_make:'', motor_poles:'', motor_kw:'', motor_flc:'', encoder_feedback_choice:'false',
+              ambient_temperature:'', encoder_feedback:'', communication_protocol:'', digital_input:'', digital_output:'', relay_output:'', analog_input:'',
+              analog_output:'', safe_torque_off:'',remote_keypad_choice:'true', remote_keypad:''};
+            this.vfdJson.main_supply = this.main_supply_array[2].id;
+            this.vfdJson.application_type = this.application_type_array[0].id;
+            this.vfdJson.motor_type = this.motor_type_array[0].id;
+          }
+      });
+      // this.load_main_supply();
+      // this.load_application_type();
+      // this.load_motor_type();
+      
+      // this.load_encoder_feedback();
+      // this.load_communication_protocol();
+      // this.load_remote_keypad();
+      
     });
   }
 
@@ -247,15 +262,15 @@ export class VdfSelectToolPage implements OnInit {
   }
 
   get_motor_specifications() {
-    if (!this.vfdJson.main_supply_id) {
+    if (!this.vfdJson.main_supply) {
       this.commonService.showToastMessage('Please select main supply.', 'toast-error','', 2000);
       return;
     }
-    if (!this.vfdJson.application_type_id) {
+    if (!this.vfdJson.application_type) {
       this.commonService.showToastMessage('Please select application type.', 'toast-error','', 2000);
       return;
     }
-    if (!this.vfdJson.motor_type_id) {
+    if (!this.vfdJson.motor_type) {
       this.commonService.showToastMessage('Please select motor type.', 'toast-error','', 2000);
       return;
     }
@@ -279,45 +294,47 @@ export class VdfSelectToolPage implements OnInit {
       this.commonService.showToastMessage('Please select motor ambient temperature.', 'toast-error','', 2000);
       return;
     }
-    if(this.encoderFeedback=='yes'){
-      if (!this.vfdJson.encoder_feedback_id) {
+    if(this.vfdJson.encoder_feedback_choice=='true'){
+      if (!this.vfdJson.encoder_feedback) {
         this.commonService.showToastMessage('Please select encoder feedback card.', 'toast-error','', 2000);
         return;
       }
     }
-    if (!this.vfdJson.communication_protocol_id) {
-      this.commonService.showToastMessage('Please select communication protocol.', 'toast-error','', 2000);
-      return;
-    }
-    if(this.remoteKeypad=='yes'){
-      if (!this.vfdJson.remote_keypad_id) {
-        this.commonService.showToastMessage('Please select motor full load current.', 'toast-error','', 2000);
+    // if (!this.vfdJson.communication_protocol) {
+    //   this.commonService.showToastMessage('Please select communication protocol.', 'toast-error','', 2000);
+    //   return;
+    // }
+    if(this.vfdJson.remote_keypad_choice=='true'){
+      if (!this.vfdJson.remote_keypad) {
+        this.commonService.showToastMessage('Please select remote keypad.', 'toast-error','', 2000);
         return;
       }
     }
     this.commonService.presentLoading();
     this.disable = true;
     let formData = new FormData();
-    formData.append("main_supply_id",this.vfdJson.main_supply_id),  
-    formData.append("application_type_id",this.vfdJson.application_type_id),
-    formData.append("motor_type_id",this.vfdJson.motor_type_id),
+    formData.append("main_supply",this.vfdJson.main_supply),  
+    formData.append("application_type",this.vfdJson.application_type),
+    formData.append("motor_type",this.vfdJson.motor_type),
     formData.append("motor_make",this.vfdJson.motor_make),
     formData.append("motor_poles",this.vfdJson.motor_poles),
     formData.append("motor_kw",this.vfdJson.motor_kw),  
     formData.append("motor_flc",this.vfdJson.motor_flc),
-    formData.append("ambient_temperature",this.vfdJson.ambient_temperature)
-    if(this.encoderFeedback=='yes'){
-      formData.append("encoder_feedback_id",this.vfdJson.encoder_feedback_id)
+    formData.append("ambient_temperature",this.vfdJson.ambient_temperature),
+    formData.append("encoder_feedback_choice",this.vfdJson.encoder_feedback_choice)
+    if(this.vfdJson.encoder_feedback_choice=='true'){
+      formData.append("encoder_feedback",this.vfdJson.encoder_feedback)
     }
-    formData.append("communication_protocol_id",this.vfdJson.communication_protocol_id),
+    formData.append("communication_protocol",this.vfdJson.communication_protocol),
     formData.append("digital_input",this.vfdJson.digital_input),
     formData.append("digital_output",this.vfdJson.digital_output),
     formData.append("relay_output",this.vfdJson.relay_output),
     formData.append("analog_input",this.vfdJson.analog_input),
     formData.append("analog_output",this.vfdJson.analog_output),
-    formData.append("safe_torque_off",this.vfdJson.safe_torque_off)
-    if(this.remoteKeypad=='yes'){
-      formData.append("remote_keypad_id",this.vfdJson.remote_keypad_id)
+    formData.append("safe_torque_off",this.vfdJson.safe_torque_off),
+    formData.append("remote_keypad_choice",this.vfdJson.remote_keypad_choice)
+    if(this.vfdJson.remote_keypad_choice=='true'){
+      formData.append("remote_keypad",this.vfdJson.remote_keypad)
     }
     this.apiService.get_motor_specifications(formData)
     .pipe(takeUntil(this._unsubscribeAll))
@@ -330,42 +347,59 @@ export class VdfSelectToolPage implements OnInit {
       //   ambient_temperature:'', encoder_feedback_id:'', communication_protocol_id:'', digital_input:'', digital_output:'', relay_output:'', analog_input:'',
       //   analog_output:'', safe_torque_off:'', remote_keypad_id:''};
         // this.router.navigate(['/my-quiz']);
-      const navigationExtras: NavigationExtras = {
-        state: {
-          vdfSelectionData: response
-        }
-      };
+      if(response.status==false){
+        this.commonService.showToastMessage(response.message, 'toast-error','', 4000);
+        this.errMsg = true;
+      }
+      else{
+        this.errMsg = false;
+        const navigationExtras: NavigationExtras = {
+          state: {
+            vdfSelectionData: response
+          }
+        };
         this.router.navigate(['/vdf-selection-result'],navigationExtras);
+      }
     },
     respError => {
       this.disable = false;
+      this.errMsg = false;
       this.commonService.dismissLoading();
       this.commonService.showToastMessage(respError, 'toast-error','', 4000);
     })
   }
 
+  // submit() {
+  //   let navigationExtras: NavigationExtras = {};
+  //   this.router.navigate(['/vdf-selection-result'],navigationExtras);
+  // }
+
   doRefresh(event:any) {
-    this.load_main_supply();
-    this.load_application_type();
-    this.load_motor_type();
+    // this.load_main_supply();
+    // this.load_application_type();
+    // this.load_motor_type();
     this.load_motor_poles();
     this.load_motor_kw();
     this.load_motor_flc();
     this.load_motor_efficiency();
-    this.load_encoder_feedback();
-    this.load_communication_protocol();
-    this.load_remote_keypad();
-    this.vfdJson = {main_supply_id:'', application_type_id:'', motor_type_id:'', motor_make:'', motor_poles:'', motor_kw:'', motor_flc:'', 
-      ambient_temperature:'', encoder_feedback_id:'', communication_protocol_id:'', digital_input:'', digital_output:'', relay_output:'', analog_input:'',
-      analog_output:'', safe_torque_off:'', remote_keypad_id:''};
-    this.encoderFeedback = 'no';
-    this.remoteKeypad = 'yes';
+    // this.load_encoder_feedback();
+    // this.load_communication_protocol();
+    // this.load_remote_keypad();
+    this.vfdJson = {main_supply:'', application_type:'', motor_type:'', motor_make:'', motor_poles:'', motor_kw:'', motor_flc:'', encoder_feedback_choice:'false',
+      ambient_temperature:'', encoder_feedback:'', communication_protocol:'', digital_input:'', digital_output:'', relay_output:'', analog_input:'',
+      analog_output:'', safe_torque_off:'',remote_keypad_choice:'true', remote_keypad:''};
+    this.vfdJson.main_supply = this.main_supply_array[2].id;
+    this.vfdJson.application_type = this.application_type_array[0].id;
+    this.vfdJson.motor_type = this.motor_type_array[0].id;
+    // this.encoderFeedback = 'no';
+    // this.remoteKeypad = 'yes';
     event.target.complete();
   }
 
 
   goBack() {
-    this.navCtrl.back();
+    // this.navCtrl.back();
+    this.router.navigate(['/home']);
   }
 
   async calculateDrive() {

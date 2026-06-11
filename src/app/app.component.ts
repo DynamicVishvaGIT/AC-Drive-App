@@ -2,7 +2,7 @@ import { Location } from '@angular/common';
 import { Component, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { StatusBar } from '@awesome-cordova-plugins/status-bar/ngx';
-import { IonTabs, Platform } from '@ionic/angular';
+import { IonTabs, ModalController, Platform, PopoverController } from '@ionic/angular';
 import { User } from './user';
 
 @Component({
@@ -21,11 +21,21 @@ export class AppComponent {
   selectedPath = '';
   selected:boolean = false;
 
-  constructor(private platform: Platform, private statusBar: StatusBar, private router: Router, private location: Location, private userService: User) {
+  constructor(private platform: Platform, private statusBar: StatusBar, private popoverController: PopoverController, private modalCtrl: ModalController, private router: Router, private location: Location, private userService: User) {
     this.selectedPath = window.location.pathname;
     console.log(this.selectedPath);
     this.initializeApp();
-    this.platform.backButton.subscribeWithPriority(9999, () => {
+    this.platform.backButton.subscribeWithPriority(9999, async () => {
+      const modal = await this.modalCtrl.getTop();  // 👈 check if a modal is open
+      if (modal) {
+        await modal.dismiss();   // close modal instead of navigating
+        return;
+      }
+      const popover = await this.popoverController.getTop();
+        if (popover) {
+          await popover.dismiss();
+          return;
+      }
       if ((this.router.url.includes('folder'))|| (this.router.url.includes('home')) || (this.router.url.includes('login'))) {
         (navigator as any).app.exitApp();
       }

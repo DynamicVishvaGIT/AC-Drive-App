@@ -2,7 +2,7 @@
   <ion-toolbar>
     <ion-buttons slot="start">
       <ion-back-button
-        defaultHref="/vfd-select">
+        defaultHref="/vdf-select-tool">
       </ion-back-button>
     </ion-buttons>
     <ion-title>Drive Selection Results</ion-title>
@@ -21,12 +21,10 @@
     </div>
   </div>
   <!-- RECOMMENDED CONFIGURATION -->
-  <div class="section-card">
+  <!-- <div class="section-card">
     <div class="section-header">Recommended Configuration</div>
     <div class="section-body">
-      <!-- MAIN IMAGE -->
       <img src="https://images.unsplash.com/photo-1703181226035-dfe869fe93cd?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxpbmR1c3RyaWFsJTIwQUMlMjBkcml2ZSUyMFZGRCUyMG1vdG9yfGVufDF8fHx8MTc3MjYxNjA5Mnww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral" class="main-image"/>
-      <!-- TWO IMAGES -->
       <div class="image-row">
         <div class="small-image-card">
           <img src="https://images.unsplash.com/photo-1686710278078-26f028c6dad8?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxlbGVjdHJpY2FsJTIwY29udHJvbCUyMHBhbmVsJTIwYXV0b21hdGlvbnxlbnwxfHx8fDE3NzI1NDUxMjN8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral" class="small-image"/>
@@ -37,10 +35,9 @@
           <div class="image-label">Drive Components</div>
         </div>
       </div>
-      <!-- SERIES CARD -->
       <div class="series-card">KD700 Series - Professional Grade Industrial AC Drive System</div>
     </div>
-  </div>
+  </div> -->
   <!-- SELECTED VFD DETAILS -->
   <div class="section-card">
     <div class="section-header">Selected VFD Details</div>
@@ -62,7 +59,7 @@
           </div>
           <div class="detail-item">
             <div class="detail-label">VFD Current & service temperature</div>
-            <div class="detail-value">{{vdfSelectionData.selection_details.vfd_catalog_no}}</div>
+            <div class="detail-value">{{vdfSelectionData.selection_details.rated_current}}</div>
           </div>
         </div>
         <!-- RIGHT SIDE IMAGE -->
@@ -78,8 +75,8 @@
             <ion-icon name="download-outline" slot="start" ></ion-icon>Download PDF 
            </ion-button>
         </div>
-        <div class="note-content">Refer
-          <strong>XD1000</strong>datasheet for detailed specifications.
+        <div class="note-content">Refer 
+          <strong>{{ vdfSelectionData.matched_motor.series_name }}</strong> datasheet for detailed specifications.
         </div>
       </div>
     </div>
@@ -93,40 +90,44 @@
           Communication Protocol
         </div>
         <div class="builtin-value">
-          Modbus RTU (RS485)
+         {{vdfSelectionData.input_data.communication_protocol}}
         </div>
       </div>
       <div class="divider"></div>
       <div class="builtin-row">
-        <div class="builtin-label">
+        <div class="builtin-value">
           DC Reactor (DCR)
         </div>
+      </div>
+      <div class="builtin-row">
+        <div class="builtin-label">
+          DC Reactor Required (DBU)
+        </div>
         <div class="builtin-value">
-          No Reactor Required (5kW)
+          {{vdfSelectionData.built_in_features.dc_reactor}}
         </div>
       </div>
       <div class="builtin-row">
         <div class="builtin-label">
-          Not Required
+          EMC Filter Category
         </div>
         <div class="builtin-value">
-          EMI Filter Category
+          {{vdfSelectionData.built_in_features.emc_filter}}
         </div>
       </div>
       <div class="builtin-row">
         <div class="builtin-label">
-          C3 (Industrial Environment)
-        </div>
-        <div class="builtin-value">
           VFD to Motor cable distance
         </div>
-      </div>
-      <div class="builtin-row">
-        <div class="builtin-label">
-          Max 100m (Standard),
-          150m with output reactor
+        <div class="builtin-value">
+          {{vdfSelectionData.built_in_features.motor_cable_distance}}
         </div>
       </div>
+      <!-- <div class="builtin-row">
+        <div class="builtin-label">
+          {{vdfSelectionData.built_in_features.emc_filter}}
+        </div>
+      </div> -->
       <div class="divider"></div>
       <p class="builtin-note">
         Depending on the selected VFD CAT No.,
@@ -147,12 +148,12 @@
         Built-in I/Os (Standard):
       </div>
       <ul class="io-list">
-        <li>Digital Input: 6</li>
-        <li>Digital Output (Transistor): 2</li>
-        <li>Output Relay: 1</li>
-        <li>Analog Input: 2</li>
-        <li>Analog Output: 1</li>
-        <li>Pulse Output: 1</li>
+        <li>Digital Input: {{vdfSelectionData.input_data.digital_input}}</li>
+        <li>Digital Output (Transistor): {{vdfSelectionData.input_data.digital_output}}</li>
+        <li>Digital Output (Relay): {{vdfSelectionData.input_data.relay_output}}</li>
+        <li>Analog Input: {{vdfSelectionData.input_data.analog_input}}</li>
+        <li>Analog Output: {{vdfSelectionData.input_data.analog_output}}</li>
+        <!-- <li>Pulse Output: {{ioCounts.DI}}</li> -->
       </ul>
     </div>
   </div>
@@ -167,7 +168,11 @@
           Remote Keypad
         </div>
         <div class="option-value">
-          XDCP-OPC-100
+          {{
+            vdfSelectionData.options_selected.remote_keypad.selected
+              ? vdfSelectionData.options_selected.remote_keypad.keypad_model
+              : 'N/A'
+          }}
         </div>
       </div>
       <div class="option-item">
@@ -175,8 +180,11 @@
           I/O Expansion Card
         </div>
         <div class="option-value">
-          XDCP-IO-DI8
-          (8 Digital Inputs)
+          {{
+            vdfSelectionData.options_selected.io_expansion_card.length
+              ? vdfSelectionData.options_selected.io_expansion_card.join(', ')
+              : 'N/A'
+          }}
         </div>
       </div>
       <div class="option-item">
@@ -184,7 +192,9 @@
           Communication Option Card
         </div>
         <div class="option-value">
-          N/A
+          {{
+            vdfSelectionData.options_selected.communication_card.card_no || 'N/A'
+          }}
         </div>
       </div>
       <div class="option-item">
@@ -192,7 +202,11 @@
           Encoder Option
         </div>
         <div class="option-value">
-          N/A
+          {{
+            vdfSelectionData.options_selected.encoder_options.length
+              ? vdfSelectionData.options_selected.encoder_options.join(', ')
+              : 'N/A'
+          }}
         </div>
       </div>
     </div>
@@ -209,7 +223,7 @@
           Dynamic Braking Unit (DBU)
         </div>
         <div class="option-value">
-          XDCP-DBU-5K5
+          {{ vdfSelectionData.peripherals.dbu_cat }}
         </div>
       </div>
       <div class="option-item">
@@ -218,7 +232,7 @@
           Rating
         </div>
         <div class="option-value">
-          100Ω / 200W
+          {{ vdfSelectionData.peripherals.dbr_ng }}
         </div>
       </div>
       <div class="divider"></div>
@@ -231,7 +245,7 @@
           AC Input Reactor
         </div>
         <div class="option-value">
-          XDCP-AIR-5K5
+          {{ vdfSelectionData.peripherals.ip_choke }}
         </div>
       </div>
       <div class="option-item">
@@ -239,8 +253,7 @@
           Motor (Output) Choke
         </div>
         <div class="option-value">
-          Optional –
-          As per site requirement
+          {{ vdfSelectionData.peripherals.op_choke }}
         </div>
       </div>
       <div class="divider"></div>
@@ -253,8 +266,7 @@
           MCCB
         </div>
         <div class="option-value">
-          MCCB DZ Range:
-          16A - 25A
+          {{ vdfSelectionData.peripherals.dz_mccb }}
         </div>
       </div>
       <p class="peripheral-note">
@@ -269,7 +281,7 @@
           Magnetic Contactor
         </div>
         <div class="option-value">
-          MC-18A
+          {{ vdfSelectionData.peripherals.mo }}
         </div>
       </div>
       <div class="option-item">
@@ -277,7 +289,7 @@
           Fuse
         </div>
         <div class="option-value">
-          HN-16A
+          {{ vdfSelectionData.peripherals.fuse }}
         </div>
       </div>
     </div>

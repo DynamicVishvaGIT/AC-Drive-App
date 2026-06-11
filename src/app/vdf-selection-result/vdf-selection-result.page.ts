@@ -14,6 +14,13 @@ export class VdfSelectionResultPage implements OnInit {
   vdfSelectionData: any = {input_data:{}, selection_details:{}, built_in_features:'', options_selected: {remote_keypad:'', communication_card:''}, peripherals:{}, matched_motor:{}, files: {}};
   currentUser:any;
   includePeripherals = true;
+  ioCounts = {
+    DI: 0,
+    DO: 0,
+    RO: 0,
+    AI: 0,
+    AO: 0
+  };
 
   constructor(private router: Router, private userService: User, private toastController: ToastController,
     private alertController: AlertController) { }
@@ -23,6 +30,7 @@ export class VdfSelectionResultPage implements OnInit {
     if (nav?.extras?.state) {
       this.vdfSelectionData = nav.extras.state['vdfSelectionData'];
       console.log(this.vdfSelectionData);
+      // this.parseIoCount();
     }
     this.userService.currentUser$.subscribe(user => {
       if (user) {
@@ -39,6 +47,16 @@ export class VdfSelectionResultPage implements OnInit {
       // this.quiz_details();
     });
   }
+  parseIoCount() {
+    const ioString = this.vdfSelectionData?.built_in_features?.io_count;
+    if (!ioString) return;
+    ioString.split(',').forEach((item:any) => {
+      const [key, value] = item.split(':').map((x:any) => x.trim());
+      if (this.ioCounts.hasOwnProperty(key)) {
+        this.ioCounts[key as keyof typeof this.ioCounts] = Number(value);
+      }
+    });
+  }
   /* =========================================
      VFD DATA
   ========================================= */
@@ -53,7 +71,8 @@ export class VdfSelectionResultPage implements OnInit {
   ========================================= */
   async downloadDatasheet() {
     // Replace with actual PDF URL from API
-    const pdfUrl = 'https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf';
+    // const pdfUrl = 'https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf';
+    const pdfUrl = "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf";
     window.open(pdfUrl, '_blank');
     const toast = await this.toastController.create({
       message: 'Datasheet download started',

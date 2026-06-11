@@ -35,7 +35,7 @@
     <!-- MAINS SUPPLY -->
     <div class="other-custom-card">
       <h2 class="card-title required">Mains Supply</h2>
-      <ion-radio-group [(ngModel)]="vfdJson.main_supply_id">
+      <ion-radio-group [(ngModel)]="vfdJson.main_supply">
         <div class="radio-grid">
           <div class="radio-item" *ngFor="let item of main_supply_array">
             <ion-radio [value]="item.id" mode="md"></ion-radio>
@@ -51,7 +51,7 @@
         <ion-icon name="options-outline"></ion-icon>
         <h2 class="card-title">Application Type</h2>
       </div>
-      <ion-radio-group [(ngModel)]="vfdJson.application_type_id">
+      <ion-radio-group [(ngModel)]="vfdJson.application_type">
         <div class="radio-column">
           <div class="radio-item" *ngFor="let item of application_type_array">
             <ion-radio [value]="item.id" mode="md"></ion-radio>
@@ -64,7 +64,7 @@
     <!-- MOTOR TYPE -->
     <div class="other-custom-card">
       <h2 class="card-title">Motor Type</h2>
-      <ion-radio-group [(ngModel)]="vfdJson.motor_type_id">
+      <ion-radio-group [(ngModel)]="vfdJson.motor_type">
         <div class="radio-column">
           <div class="radio-item" *ngFor="let item of motor_type_array">
             <ion-radio [value]="item.id" mode="md"></ion-radio>
@@ -125,21 +125,21 @@
     <!-- ENCODER -->
     <div class="custom-card">
       <h2 class="card-title">Encoder Feedback</h2>
-      <ion-radio-group [(ngModel)]="encoderFeedback">
+      <ion-radio-group [(ngModel)]="vfdJson.encoder_feedback_choice">
         <div class="radio-row">
           <div class="radio-item">
-            <ion-radio value="no" mode="md"></ion-radio>
+            <ion-radio value="false" mode="md"></ion-radio>
             <span>NO</span>
           </div>
           <div class="radio-item">
-            <ion-radio value="yes" mode="md"></ion-radio>
+            <ion-radio value="true" mode="md"></ion-radio>
             <span>YES</span>
           </div>
         </div>
       </ion-radio-group>
-      <div *ngIf="encoderFeedback=='yes'">
+      <div *ngIf="vfdJson.encoder_feedback_choice=='true'">
         <label class="field-label required">CAT no. of Encoder cards</label>
-        <ion-select interface="popover" placeholder="Select encoder cards" [(ngModel)]="vfdJson.encoder_feedback_id" class="custom-select">
+        <ion-select interface="popover" placeholder="Select encoder cards" [(ngModel)]="vfdJson.encoder_feedback" class="custom-select">
           <ion-select-option [value]="item.id" *ngFor="let item of encoder_feedback_array">{{item.ENCODER_FEEDBACK_NAME}}</ion-select-option>
         </ion-select>
       </div>
@@ -149,7 +149,7 @@
     <div class="custom-card">
       <h2 class="card-title">Communication Protocol</h2>
       <p class="sub-note">Note: Built in - Modbus RTU / RS485</p>
-      <ion-radio-group [(ngModel)]="vfdJson.communication_protocol_id">
+      <ion-radio-group [(ngModel)]="vfdJson.communication_protocol">
         <div class="radio-column">
           <div class="radio-item" *ngFor="let item of communication_protocol_array">
             <ion-radio [value]="item.id" mode="md"></ion-radio>
@@ -204,21 +204,21 @@
     <!-- REMOTE -->
     <div class="custom-card">
       <h2 class="card-title">Remote Keypad</h2>
-      <ion-radio-group [(ngModel)]="remoteKeypad">
+      <ion-radio-group [(ngModel)]="vfdJson.remote_keypad_choice">
         <div class="radio-row">
           <div class="radio-item">
-            <ion-radio value="yes" mode="md"></ion-radio>
+            <ion-radio value="true" mode="md"></ion-radio>
             <span>YES</span>
           </div>
           <div class="radio-item">
-            <ion-radio value="no" mode="md"></ion-radio>
+            <ion-radio value="false" mode="md"></ion-radio>
             <span>NO</span>
           </div>
         </div>
       </ion-radio-group>
-      <div *ngIf="remoteKeypad=='yes'">
+      <div *ngIf="vfdJson.remote_keypad_choice=='true'">
         <label class="field-label required">Available option for remote keypad</label>
-        <ion-select interface="popover" placeholder="Select remote keypad model" [(ngModel)]="vfdJson.remote_keypad_id" class="custom-select">
+        <ion-select interface="popover" placeholder="Select remote keypad model" [(ngModel)]="vfdJson.remote_keypad" class="custom-select">
           <ion-select-option [value]="item.id" *ngFor="let item of remote_keypad_array">{{item.REMOTE_KEYPAD_NAME}}</ion-select-option>
         </ion-select>
       </div>
@@ -227,5 +227,18 @@
     <ion-button expand="block" class="calculate-btn" (click)="get_motor_specifications()" [disabled]="disable">
       <ion-icon name="calculator-outline" slot="start"></ion-icon>Calculate & Select Drive
     </ion-button>
+    <div class="no-vfd-card" *ngIf="errMsg"> 
+      <div class="warning-icon">
+        <ion-icon name="warning"></ion-icon>
+      </div>
+      <h2>No VFD Found</h2>
+      <p>
+        No VFD in the eligible range can deliver
+        <strong>{{vfdJson.motor_flc}} A</strong> at <strong>{{vfdJson.ambient_temperature}}°C</strong> after derating.
+        <br>
+        Consider a higher kW rating or a different model family.
+      </p>
+    </div>
   </div>
+  
 </ion-content>
