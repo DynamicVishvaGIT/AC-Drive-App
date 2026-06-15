@@ -11,7 +11,7 @@ export class Common {
   baseUrl = 'https://ac-drive.dvworks.in/';
   // fcm_token: string = 'fcm_token';
   // platform_type:string='android';
-  // device_type: string = 'mobile';
+  device_type: string = 'mobile';
   isLoading = false;
 
   constructor(@Inject(LOCAL_STORAGE) private storage: StorageService,private toastController: ToastController, private loadingController: LoadingController) { }

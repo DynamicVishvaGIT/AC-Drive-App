@@ -50,6 +50,7 @@ export class LoginPage implements OnInit {
     let formData = new FormData();
     formData.append("email_id",this.login_data.email_id),
     formData.append("password",this.login_data.password),
+    formData.append("device_type",this.commonService.device_type),
     this.apiService.login(formData)
     .pipe(takeUntil(this._unsubscribeAll))
     .subscribe((response:any) => {

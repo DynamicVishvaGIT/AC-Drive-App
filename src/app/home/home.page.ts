@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { ToastController } from '@ionic/angular';
 import { User } from '../user';
 import { Common } from '../common';
 import { Api } from '../api';
-import { Subject, takeUntil } from 'rxjs';
+import { filter, Subject, takeUntil } from 'rxjs';
 
 @Component({
   selector: 'app-home',
@@ -75,11 +75,22 @@ export class HomePage implements OnInit {
     }
   ];
 
-  constructor(private toastController: ToastController, private router: Router, private userService: User, private commonService: Common, private apiService: Api) {
+  constructor(private toastController: ToastController, private activatedRoute: ActivatedRoute, private router: Router, private userService: User, private commonService: Common, private apiService: Api) {
     this._unsubscribeAll = new Subject();
   }
 
   ngOnInit() {
+    this.router.events.pipe(
+      filter((event): event is NavigationEnd => event instanceof NavigationEnd) // Ensure the event is of type NavigationEnd
+      ).subscribe((event: NavigationEnd) => {
+        if (event.url.startsWith('/home')) {
+          this.router.navigate([], {
+            relativeTo: this.activatedRoute,
+            state: {},
+            replaceUrl: true
+          });
+      }
+    });
     this.userService.currentUser$.subscribe(user => {
       if (user) {
         this.currentUser = user;

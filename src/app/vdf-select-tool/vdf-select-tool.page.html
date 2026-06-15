@@ -81,7 +81,7 @@
         <!-- Capacity -->
         <div>
           <label class="field-label required">Motor Efficient Class</label>
-          <ion-select interface="popover" placeholder="Select from the list" [(ngModel)]="vfdJson.motor_make" class="custom-select">
+          <ion-select interface="popover" placeholder="Select from the list" [(ngModel)]="vfdJson.motor_efficiency_class" class="custom-select">
             <ion-select-option [value]="item.MOTOR_TYPE" *ngFor="let item of motor_efficiency_array">{{item.MOTOR_TYPE}}</ion-select-option>
           </ion-select>
         </div>

@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { NavigationEnd, NavigationExtras, Router } from '@angular/router';
 import { User } from '../user';
-import { AlertController, ToastController } from '@ionic/angular';
+import { AlertController, Platform, ToastController } from '@ionic/angular';
+import { filter, Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-vdf-selection-result',
@@ -21,17 +22,24 @@ export class VdfSelectionResultPage implements OnInit {
     AI: 0,
     AO: 0
   };
+  backSub!: Subscription;
 
   constructor(private router: Router, private userService: User, private toastController: ToastController,
-    private alertController: AlertController) { }
+    private alertController: AlertController, private platform: Platform) { }
 
   ngOnInit() {
-    const nav = this.router.getCurrentNavigation();
-    if (nav?.extras?.state) {
-      this.vdfSelectionData = nav.extras.state['vdfSelectionData'];
-      console.log(this.vdfSelectionData);
-      // this.parseIoCount();
-    }
+    this.router.events.pipe(
+      filter((event): event is NavigationEnd => event instanceof NavigationEnd) // Ensure the event is of type NavigationEnd
+      ).subscribe((event: NavigationEnd) => {
+        if (event.url.startsWith('/vdf-selection-result')) {
+        const nav = this.router.getCurrentNavigation();
+        if (nav?.extras?.state) {
+          this.vdfSelectionData = nav.extras.state['vdfSelectionData'];
+          console.log(this.vdfSelectionData);
+          this.parseIoCount();
+        }
+      }
+    });
     this.userService.currentUser$.subscribe(user => {
       if (user) {
         this.currentUser = user;
@@ -46,6 +54,20 @@ export class VdfSelectionResultPage implements OnInit {
       }
       // this.quiz_details();
     });
+  }
+
+  ionViewDidEnter() {
+    this.backSub = this.platform.backButton.subscribeWithPriority(9999, () => {
+      this.router.navigate(['/vdf-select-tool'], {
+        state: {
+          route: 'back'
+        }
+      });
+    });
+  }
+  
+  ionViewWillLeave() {
+    this.backSub?.unsubscribe();
   }
   parseIoCount() {
     const ioString = this.vdfSelectionData?.built_in_features?.io_count;
@@ -115,7 +137,19 @@ export class VdfSelectionResultPage implements OnInit {
      NEW CALCULATION
   ========================================= */
   newCalculation() {
-    this.router.navigate(['/vdf-select-tool']);
+    this.router.navigate(['/vdf-select-tool'], {
+      state: {
+        route: 'new'
+      }
+    });
+  }
+
+  goBack() {
+    this.router.navigate(['/vdf-select-tool'], {
+      state: {
+        route: 'back'
+      }
+    });
   }
   /* =========================================
      INCLUDE PERIPHERALS

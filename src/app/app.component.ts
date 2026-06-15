@@ -43,7 +43,7 @@ export class AppComponent {
         this.router.navigate(['login'])
       }
        
-      else if  ((this.router.url.includes('my-profile')) ||(this.router.url.includes('my-quiz')) ||(this.router.url.includes('vdf-select')) ||(this.router.url.includes('my-enquiry')) ||(this.router.url.includes('my-leads')) ||(this.router.url.includes('my-service-request')) ||(this.router.url.includes('project-lead')) ||(this.router.url.includes('projectlist')) ||(this.router.url.includes('quiz'))   ||(this.router.url.includes('scanretailer')) || (this.router.url.includes('scheme')) ) {
+      else if  ((this.router.url.includes('my-profile')) ||(this.router.url.includes('my-quiz')) ||(this.router.url.includes('my-enquiry')) || (this.router.url.includes('vdf-select-tool')) ||(this.router.url.includes('my-leads')) ||(this.router.url.includes('my-service-request')) ||(this.router.url.includes('project-lead')) ||(this.router.url.includes('projectlist')) ||(this.router.url.includes('quiz'))   ||(this.router.url.includes('scanretailer')) || (this.router.url.includes('scheme')) ) {
         this.router.navigate(['home'])
       }
       else if  (this.router.url.includes('my-quiz-details')) {
@@ -53,6 +53,13 @@ export class AppComponent {
       else if  (this.router.url.includes('my-enquiry-details')) {
         this.router.navigate(['my-enquiry'])
       }
+      // else if (this.router.url.includes('vdf-selection-result')) {
+      //   this.router.navigate(['/vdf-select-tool'], {
+      //     state: {
+      //       route: 'back'
+      //     }
+      //   });
+      // }
       else{
         this.location.back();
       }
@@ -92,5 +99,13 @@ export class AppComponent {
   openPage(page:any) {
     this.selectedPath = page.url;
    this.router.navigate([page.url])
+  }
+
+  goToVDFSelectTool() {
+    this.router.navigate(['/vdf-select-tool'], {
+      state: {
+        route: 'new'
+      }
+    });
   }
 }

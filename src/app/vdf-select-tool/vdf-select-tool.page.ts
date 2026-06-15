@@ -4,7 +4,7 @@ import { User } from '../user';
 import { Api } from '../api';
 import { Common } from '../common';
 import { filter, Subject, takeUntil } from 'rxjs';
-import { NavigationEnd, NavigationExtras, Router } from '@angular/router';
+import { ActivatedRoute, NavigationEnd, NavigationExtras, Router } from '@angular/router';
 
 @Component({
   selector: 'app-vdf-select-tool',
@@ -17,11 +17,11 @@ export class VdfSelectToolPage implements OnInit {
   private _unsubscribeAll: Subject<any>;
 
   currentUser:any;
-  vfdJson:any = {main_supply:'', application_type:'', motor_type:'', motor_make:'', motor_poles:'', motor_kw:'', motor_flc:'', encoder_feedback_choice:'false',
+  vfdJson:any = {main_supply:'', application_type:'', motor_type:'', motor_efficiency_class:'', motor_poles:'', motor_kw:'', motor_flc:'', encoder_feedback_choice:'false',
     ambient_temperature:'', encoder_feedback:'', communication_protocol:'', digital_input:'', digital_output:'', relay_output:'', analog_input:'',
     analog_output:'', safe_torque_off:'',remote_keypad_choice:'true', remote_keypad:''};
   main_supply_array:any=[{"id": "1Ph 200V","MAIN_SUPPLY_NAME": "1 Ph 200"},{"id": "3Ph 200V","MAIN_SUPPLY_NAME": "3 Ph 200"},{"id": "3Ph 400V","MAIN_SUPPLY_NAME": "3 Ph 400"}];
-  application_type_array:any=[{"id": "CT_DBU_GRAVITY","APPLICATION_TYPE_NAME": "Constant Torque with DBU, Gravity"},{"id": "CT_DBU_NO_GRAV","APPLICATION_TYPE_NAME": "Constant Torque with DBU, Non Gravity"},{"id": "CT_NO_DBU","APPLICATION_TYPE_NAME": "Constant Torque without DBU"},{"id": "VT","APPLICATION_TYPE_NAME": "Variable Torque"}];
+  application_type_array:any=[{"id": "CT_NO_DBU","APPLICATION_TYPE_NAME": "Constant Torque without DBU"},{"id": "CT_DBU_GRAVITY","APPLICATION_TYPE_NAME": "Constant Torque with DBU, Gravity"},{"id": "CT_DBU_NO_GRAV","APPLICATION_TYPE_NAME": "Constant Torque with DBU, Non Gravity"},{"id": "VT","APPLICATION_TYPE_NAME": "Variable Torque"}];
   motor_type_array:any=[{"id": "Asynchronous","MOTOR_TYPE_NAME": "Asynchronous Motor"},{"id": "Reluctance","MOTOR_TYPE_NAME": "Reluctance Motor"},{"id": "Synchronous PM","MOTOR_TYPE_NAME": "Synchronous PM motor"}];
   motor_poles_array: any=[];
   motor_kw_array: any=[];
@@ -29,7 +29,7 @@ export class VdfSelectToolPage implements OnInit {
   motor_efficiency_array:any=[];
   isProgrammaticUpdate = false;
   encoder_feedback_array: any=[{"id": "XDEN-AEI-V01","ENCODER_FEEDBACK_NAME": "Analog Encoder - XDEN-AEI-V01"},{"id": "XDEN-DEI-V01","ENCODER_FEEDBACK_NAME": "Digital Encoder - XDEN-DEI-V01"},{"id": "XDEN-HEI-V01","ENCODER_FEEDBACK_NAME": "HTL Encoder - XDEN-HEI-V01"},{"id": "XDEN-REI-V01","ENCODER_FEEDBACK_NAME": "Resolver - XDEN-REI-V01"}];
-  communication_protocol_array:any=[{"id": "modbus-tcp-ethernet","COMMUNICATION_PROTOCOL_NAME": "Modbus TCP / Ethernet IP"},{"id": "profibus-dp","COMMUNICATION_PROTOCOL_NAME": "Profibus DP"},{"id": "profinet","COMMUNICATION_PROTOCOL_NAME": "Profinet"},{"id": "profinet-s2-redundant","COMMUNICATION_PROTOCOL_NAME": "Profinet S2 Redundant"}];
+  communication_protocol_array:any=[{"id":'', "COMMUNICATION_PROTOCOL_NAME":"None (Built-in Modbus RTU / RS485 only)"},{"id": "modbus-tcp-ethernet","COMMUNICATION_PROTOCOL_NAME": "Modbus TCP / Ethernet IP"},{"id": "profibus-dp","COMMUNICATION_PROTOCOL_NAME": "Profibus DP"},{"id": "profinet","COMMUNICATION_PROTOCOL_NAME": "Profinet"},{"id": "profinet-s2-redundant","COMMUNICATION_PROTOCOL_NAME": "Profinet S2 Redundant"}];
   // encoderFeedback = 'no';
   // remoteKeypad = 'yes';
   remote_keypad_array:any=[{"id": "XDCP-OCP-100","REMOTE_KEYPAD_NAME": "XDCP-OCP-100 (IP54 LED Remote Keypad)"},{"id": "XDCP-OCP-S50","REMOTE_KEYPAD_NAME": "XDCP-OCP-S50 (Graphical LCD)"}];
@@ -43,9 +43,10 @@ export class VdfSelectToolPage implements OnInit {
   aoFocused = false;
   stoFocused = false;
   errMsg: boolean = false;
+  routeURL: string = '';
 
   constructor(private navCtrl: NavController, private toastController: ToastController, private userService: User, private apiService: Api, private commonService: Common,
-    private router: Router
+    private router: Router, private activatedRoute: ActivatedRoute
   ) { 
     this._unsubscribeAll = new Subject();
   }
@@ -67,16 +68,26 @@ export class VdfSelectToolPage implements OnInit {
         filter((event): event is NavigationEnd => event instanceof NavigationEnd) // Ensure the event is of type NavigationEnd
         ).subscribe((event: NavigationEnd) => {
           if (event.url.startsWith('/vdf-select-tool')) { // Check if user navigated back to a specific URL
+            const navigation = this.router.getCurrentNavigation();
+            if (navigation?.extras?.state) {
+              this.routeURL = navigation.extras.state['route'];
+            }
             this.load_motor_poles();
             this.load_motor_kw();
             this.load_motor_flc();
             this.load_motor_efficiency();
-            this.vfdJson = {main_supply:'', application_type:'', motor_type:'', motor_make:'', motor_poles:'', motor_kw:'', motor_flc:'', encoder_feedback_choice:'false',
-              ambient_temperature:'', encoder_feedback:'', communication_protocol:'', digital_input:'', digital_output:'', relay_output:'', analog_input:'',
-              analog_output:'', safe_torque_off:'',remote_keypad_choice:'true', remote_keypad:''};
-            this.vfdJson.main_supply = this.main_supply_array[2].id;
-            this.vfdJson.application_type = this.application_type_array[0].id;
-            this.vfdJson.motor_type = this.motor_type_array[0].id;
+            console.log(this.routeURL);
+            // alert(this.routeURL);
+            if(this.routeURL!='back'){
+              this.vfdJson = {main_supply:'', application_type:'', motor_type:'', motor_efficiency_class:'', motor_poles:'', motor_kw:'', motor_flc:'', encoder_feedback_choice:'false',
+                ambient_temperature:'', encoder_feedback:'', communication_protocol:'', digital_input:'', digital_output:'', relay_output:'', analog_input:'',
+                analog_output:'', safe_torque_off:'',remote_keypad_choice:'true', remote_keypad:''};
+              this.vfdJson.main_supply = this.main_supply_array[2].id;
+              this.vfdJson.application_type = this.application_type_array[0].id;
+              this.vfdJson.motor_type = this.motor_type_array[0].id;
+              this.vfdJson.communication_protocol = this.communication_protocol_array[0].id;
+            }
+            this.errMsg = false;
           }
       });
       // this.load_main_supply();
@@ -189,7 +200,7 @@ export class VdfSelectToolPage implements OnInit {
   }
 
   getMotorMapping(type: 'KW' | 'FLC') {
-    if (!this.vfdJson.motor_make) {
+    if (!this.vfdJson.motor_efficiency_class) {
       this.commonService.showToastMessage('Please select Motor Efficient Class.', 'toast-error','', 2000);
       return;
     }
@@ -198,7 +209,7 @@ export class VdfSelectToolPage implements OnInit {
       return;
     }
     let formData = new FormData();
-    formData.append("motor_make", this.vfdJson.motor_make || '');
+    formData.append("motor_efficiency_class", this.vfdJson.motor_efficiency_class || '');
     formData.append("motor_poles", this.vfdJson.motor_poles || '');
     formData.append("motor_kw", this.vfdJson.motor_kw || '');
     formData.append("motor_flc", this.vfdJson.motor_flc || '');
@@ -220,6 +231,12 @@ export class VdfSelectToolPage implements OnInit {
             }, 100);
           }
         },(respError) => {
+          if (type === 'KW') {
+            this.vfdJson.motor_flc = '';
+          }
+          else{
+            this.vfdJson.motor_kw = '';
+          }
           this.commonService.showToastMessage(respError,'toast-error','',4000);
         }
       );
@@ -274,7 +291,7 @@ export class VdfSelectToolPage implements OnInit {
       this.commonService.showToastMessage('Please select motor type.', 'toast-error','', 2000);
       return;
     }
-    if (!this.vfdJson.motor_make) {
+    if (!this.vfdJson.motor_efficiency_class) {
       this.commonService.showToastMessage('Please select motor efficient class.', 'toast-error','', 2000);
       return;
     }
@@ -316,7 +333,8 @@ export class VdfSelectToolPage implements OnInit {
     formData.append("main_supply",this.vfdJson.main_supply),  
     formData.append("application_type",this.vfdJson.application_type),
     formData.append("motor_type",this.vfdJson.motor_type),
-    formData.append("motor_make",this.vfdJson.motor_make),
+    formData.append("motor_make",'MAX'),
+    formData.append("motor_efficiency_class",this.vfdJson.motor_efficiency_class),
     formData.append("motor_poles",this.vfdJson.motor_poles),
     formData.append("motor_kw",this.vfdJson.motor_kw),  
     formData.append("motor_flc",this.vfdJson.motor_flc),
@@ -385,12 +403,13 @@ export class VdfSelectToolPage implements OnInit {
     // this.load_encoder_feedback();
     // this.load_communication_protocol();
     // this.load_remote_keypad();
-    this.vfdJson = {main_supply:'', application_type:'', motor_type:'', motor_make:'', motor_poles:'', motor_kw:'', motor_flc:'', encoder_feedback_choice:'false',
+    this.vfdJson = {main_supply:'', application_type:'', motor_type:'',motor_make:'', motor_efficiency_class:'', motor_poles:'', motor_kw:'', motor_flc:'', encoder_feedback_choice:'false',
       ambient_temperature:'', encoder_feedback:'', communication_protocol:'', digital_input:'', digital_output:'', relay_output:'', analog_input:'',
       analog_output:'', safe_torque_off:'',remote_keypad_choice:'true', remote_keypad:''};
     this.vfdJson.main_supply = this.main_supply_array[2].id;
     this.vfdJson.application_type = this.application_type_array[0].id;
     this.vfdJson.motor_type = this.motor_type_array[0].id;
+    this.vfdJson.communication_protocol = this.communication_protocol_array[0].id;
     // this.encoderFeedback = 'no';
     // this.remoteKeypad = 'yes';
     event.target.complete();

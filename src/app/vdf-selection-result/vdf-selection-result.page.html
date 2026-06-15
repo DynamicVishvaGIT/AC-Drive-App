@@ -1,11 +1,19 @@
 <ion-header class="custom-header">
   <ion-toolbar>
-    <ion-buttons slot="start">
+    <div class="header-container">
+      <div class="back-section" (click)="goBack()">
+        <ion-icon name="chevron-back-outline"></ion-icon>
+      </div>
+      <div class="header-title">
+        Drive Selection Results
+      </div>
+    </div>
+    <!-- <ion-buttons slot="start">
       <ion-back-button
         defaultHref="/vdf-select-tool">
       </ion-back-button>
     </ion-buttons>
-    <ion-title>Drive Selection Results</ion-title>
+    <ion-title>Drive Selection Results</ion-title> -->
   </ion-toolbar>
 </ion-header>
 
@@ -82,7 +90,7 @@
     </div>
   </div>
   <!-- BUILT IN -->
-  <div class="section-card">
+  <!-- <div class="section-card">
     <div class="section-header">Built-in</div>
     <div class="section-body">
       <div class="builtin-row">
@@ -123,11 +131,6 @@
           {{vdfSelectionData.built_in_features.motor_cable_distance}}
         </div>
       </div>
-      <!-- <div class="builtin-row">
-        <div class="builtin-label">
-          {{vdfSelectionData.built_in_features.emc_filter}}
-        </div>
-      </div> -->
       <div class="divider"></div>
       <p class="builtin-note">
         Depending on the selected VFD CAT No.,
@@ -136,23 +139,34 @@
         for built-in details.
       </p>
     </div>
-  </div>
+  </div> -->
   <!-- SECTION 2 STARTS HERE -->
   <!-- I/O COUNT -->
   <div class="section-card">
     <div class="section-header">
-      I/O Count
+      Built-in Features
     </div>
     <div class="section-body">
       <div class="sub-heading">
         Built-in I/Os (Standard):
       </div>
       <ul class="io-list">
-        <li>Digital Input: {{vdfSelectionData.input_data.digital_input}}</li>
+        <li>Communication: <b>{{vdfSelectionData.built_in_features.communication_protocol}}</b></li>
+        <li>I/O Count: <b>{{vdfSelectionData.built_in_features.io_count}}</b></li>
+        <li>DC Reactor: <b>{{vdfSelectionData.built_in_features.dc_reactor}}</b></li>
+        <li>Dynamic Braking Unit: <b>{{vdfSelectionData.built_in_features.dbu_supported}}</b></li>
+        <li>EMC Filter: <b>{{vdfSelectionData.built_in_features.emc_filter}}</b></li>
+        <li>Cable Distance: <b>{{vdfSelectionData.built_in_features.motor_cable_distance}}</b></li>
+        <!-- <li>Digital Input: {{vdfSelectionData.built_in_features.DI}}</li>
+        <li>Digital Output (Transistor): {{vdfSelectionData.built_in_features.DO}}</li>
+        <li>Digital Output (Relay): {{vdfSelectionData.built_in_features.RO}}</li>
+        <li>Analog Input: {{vdfSelectionData.built_in_features.AI}}</li>
+        <li>Analog Output: {{vdfSelectionData.built_in_features.AO}}</li> -->
+        <!-- <li>Digital Input: {{vdfSelectionData.input_data.digital_input}}</li>
         <li>Digital Output (Transistor): {{vdfSelectionData.input_data.digital_output}}</li>
         <li>Digital Output (Relay): {{vdfSelectionData.input_data.relay_output}}</li>
         <li>Analog Input: {{vdfSelectionData.input_data.analog_input}}</li>
-        <li>Analog Output: {{vdfSelectionData.input_data.analog_output}}</li>
+        <li>Analog Output: {{vdfSelectionData.input_data.analog_output}}</li> -->
         <!-- <li>Pulse Output: {{ioCounts.DI}}</li> -->
       </ul>
     </div>
@@ -168,11 +182,7 @@
           Remote Keypad
         </div>
         <div class="option-value">
-          {{
-            vdfSelectionData.options_selected.remote_keypad.selected
-              ? vdfSelectionData.options_selected.remote_keypad.keypad_model
-              : 'N/A'
-          }}
+          {{vdfSelectionData.options_selected.remote_keypad}}
         </div>
       </div>
       <div class="option-item">
@@ -180,11 +190,7 @@
           I/O Expansion Card
         </div>
         <div class="option-value">
-          {{
-            vdfSelectionData.options_selected.io_expansion_card.length
-              ? vdfSelectionData.options_selected.io_expansion_card.join(', ')
-              : 'N/A'
-          }}
+          {{vdfSelectionData.options_selected.io_expansion_card}}
         </div>
       </div>
       <div class="option-item">
@@ -192,9 +198,7 @@
           Communication Option Card
         </div>
         <div class="option-value">
-          {{
-            vdfSelectionData.options_selected.communication_card.card_no || 'N/A'
-          }}
+          {{vdfSelectionData.options_selected.communication_option_card}}
         </div>
       </div>
       <div class="option-item">
@@ -202,11 +206,7 @@
           Encoder Option
         </div>
         <div class="option-value">
-          {{
-            vdfSelectionData.options_selected.encoder_options.length
-              ? vdfSelectionData.options_selected.encoder_options.join(', ')
-              : 'N/A'
-          }}
+          {{vdfSelectionData.options_selected.encoder_options}}
         </div>
       </div>
     </div>
@@ -228,11 +228,22 @@
       </div>
       <div class="option-item">
         <div class="option-label">
-          Dynamic Braking Resistor (DBR)
-          Rating
+          DBR (Non-Hoist)
+          <!-- Dynamic Braking Resistor (DBR)
+          Rating -->
         </div>
         <div class="option-value">
           {{ vdfSelectionData.peripherals.dbr_ng }}
+        </div>
+      </div>
+      <div class="option-item">
+        <div class="option-label">
+          DBR (Hoist)
+          <!-- Dynamic Braking Resistor (DBR)
+          Rating -->
+        </div>
+        <div class="option-value">
+          {{ vdfSelectionData.peripherals.dbr_g }}
         </div>
       </div>
       <div class="divider"></div>
@@ -263,25 +274,57 @@
       </div>
       <div class="option-item">
         <div class="option-label">
-          MCCB
+          Circuit Breaker (MPCB)
+        </div>
+        <div class="option-value">
+          {{ vdfSelectionData.peripherals.mpcb }}
+        </div>
+      </div>
+      <div class="option-item">
+        <div class="option-label">
+          MCCB (DZ Range)
         </div>
         <div class="option-value">
           {{ vdfSelectionData.peripherals.dz_mccb }}
         </div>
       </div>
-      <p class="peripheral-note">
+      <!-- <p class="peripheral-note">
         Depending on the selected CAT No.
         of VFD, the compatible peripheral
         parts / ratings would be displayed here.
         For peripheral data refer
         "Peripheral Data".
-      </p>
+      </p> -->
       <div class="option-item">
         <div class="option-label">
-          Magnetic Contactor
+          MCCB (DN Range)
+        </div>
+        <div class="option-value">
+          {{ vdfSelectionData.peripherals.dn_mccb }}
+        </div>
+      </div>
+      <div class="option-item">
+        <div class="option-label">
+          Contactor (MO)
         </div>
         <div class="option-value">
           {{ vdfSelectionData.peripherals.mo }}
+        </div>
+      </div>
+      <div class="option-item">
+        <div class="option-label">
+          Contactor (MNX)
+        </div>
+        <div class="option-value">
+          {{ vdfSelectionData.peripherals.mnx }}
+        </div>
+      </div>
+      <div class="option-item">
+        <div class="option-label">
+          Contactor (MI)
+        </div>
+        <div class="option-value">
+          {{ vdfSelectionData.peripherals.mi }}
         </div>
       </div>
       <div class="option-item">
